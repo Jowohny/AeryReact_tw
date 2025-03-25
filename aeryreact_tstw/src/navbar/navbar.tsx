@@ -2,19 +2,13 @@ import { TypeAnimation } from "react-type-animation";
 import { RefObject } from "react";
 import logo from "../assets/images/logo2.png";
 
-// Define types directly in the function parameters
-function Navbar({
-    triggerAnimation,
-    title,
-    logoRef
-}: {
+function Navbar({ triggerAnimation, title, logoRef }: {
     triggerAnimation: boolean;
     title: RefObject<null>;
     logoRef: RefObject<null>;
 }) {
     return (
         <div className="flex-col justify-center items-center p-4 text-center h-1/6 relative">
-            {/* TypeAnimation container */}
             <div
                 ref={title}
                 className={`fade-in absolute inset-0 flex items-center justify-center ${triggerAnimation ? 'pointer-events-none' : ''}`}
@@ -35,7 +29,6 @@ function Navbar({
                 )}
             </div>
 
-            {/* Logo container */}
             <div
                 className={`absolute inset-0 flex items-center justify-center ${triggerAnimation ? '' : 'opacity-0 pointer-events-none'}`}
             >

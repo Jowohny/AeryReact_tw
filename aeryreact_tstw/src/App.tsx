@@ -23,18 +23,14 @@ function App() {
     return () => clearTimeout(cooldownTimer);
   }, []);
 
-  // Handle animation when triggerAnimation changes
   useEffect(() => {
     if (triggerAnimation && appContainerRef.current) {
-      console.log("Starting background animation");
-      // Animate the background to white
       gsap.to(appContainerRef.current, {
         backgroundColor: "#ffffff",
         duration: 1.5,
         ease: "power2.inOut"
       });
 
-      // Logo animation - only if both trigger is true and ref exists
       if (logoRef.current) {
         gsap.fromTo(
           logoRef.current,
@@ -43,7 +39,6 @@ function App() {
         );
       }
 
-      // Title fade out - only if both trigger is true and ref exists
       if (title.current) {
         gsap.to(title.current, {
           opacity: 0,
@@ -54,11 +49,9 @@ function App() {
     }
   }, [triggerAnimation]);
 
-  // Create the scroll/touch/key handler function - using the deps array properly
   const handleScrollAttempt = useCallback(() => {
     console.log("Handle scroll attempt, cooldown:", isCooldown);
 
-    // Only proceed if NOT in cooldown
     if (isCooldown) return;
 
     console.log("Triggering animation!");
@@ -66,13 +59,11 @@ function App() {
     setTriggerAnimation(true);
     setIsCooldown(true);
 
-    // Reset cooldown after delay
     setTimeout(() => {
       setIsCooldown(false);
     }, 3000);
   }, [isCooldown]); // Only depend on isCooldown
 
-  // Set up event listeners
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
       if (["ArrowDown", "PageDown", "End", "Space"].includes(event.key)) {
@@ -80,12 +71,10 @@ function App() {
       }
     };
 
-    // Add event listeners
     window.addEventListener("wheel", handleScrollAttempt);
     window.addEventListener("touchmove", handleScrollAttempt);
     window.addEventListener("keydown", handleKeydown);
 
-    // Clean up
     return () => {
       window.removeEventListener("wheel", handleScrollAttempt);
       window.removeEventListener("touchmove", handleScrollAttempt);

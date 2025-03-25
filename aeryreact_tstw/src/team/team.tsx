@@ -1,5 +1,3 @@
-import logo from "../assets/images/logo2.png";
-
 function Team() {
     return (
 

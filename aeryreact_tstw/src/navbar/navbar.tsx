@@ -29,15 +29,12 @@ function Navbar({ triggerAnimation, title, logoRef }: {
                 )}
             </div>
 
-            <div
-                className={`absolute inset-0 flex items-center justify-center ${triggerAnimation ? '' : 'opacity-0 pointer-events-none'}`}
-            >
+            <div className="absolute inset-0 flex items-center justify-center">
                 <img
                     ref={logoRef}
                     src={logo}
                     alt="logo"
-                    className="h-full z-10"
-                    style={{ opacity: triggerAnimation ? 1 : 0 }}
+                    className={`h-full z-10 opacity-0 scale-0`}
                 />
             </div>
         </div>

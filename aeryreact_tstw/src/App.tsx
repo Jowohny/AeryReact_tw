@@ -1,37 +1,80 @@
 import Navbar from "./navbar/navbar";
 import Info from "./Info/info";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import gsap from 'gsap';
 
 function App() {
-  // Start with both states as false to prevent immediate animation
+  //boolean states
   const [triggerAnimation, setTriggerAnimation] = useState(false);
-  const [isCooldown, setIsCooldown] = useState(false);
+  const triggerAnimationRef = useRef(false);
+  const [initialCooldown, setInitialCooldown] = useState(false);
+
+  //navbar.tsx references
   const title = useRef(null);
   const logoRef = useRef(null);
   const appContainerRef = useRef(null);
 
-  // Initial setup - optional cooldown period
-  useEffect(() => {
-    // If you want an initial cooldown period, uncomment this
+  //info.tsx references
+  const birdRef = useRef(null);
+  const side1 = useRef(null);
+  const side2 = useRef(null);
 
-    setIsCooldown(true);
+  // Initial 15-second cooldown
+  useEffect(() => {
     const cooldownTimer = setTimeout(() => {
-      setIsCooldown(false);
-    }, 15000);
+      setInitialCooldown(true);
+    }, 5000);
 
     return () => clearTimeout(cooldownTimer);
   }, []);
 
-  useEffect(() => {
-    if (triggerAnimation && appContainerRef.current) {
+  // Animation effect
+  const transitionTrigger1 = () => {
+    const t1 = gsap.timeline();
+
+    gsap.fromTo(
+      [side1.current, side2.current],
+      { opacity: 1 },
+      { opacity: 0, duration: 0.5 }
+    );
+
+    t1.fromTo(
+      birdRef.current,
+      { scale: 1 },
+      {
+        scale: 1.1,
+        duration: 1,
+        ease: "bounce.in()",
+      },
+    ).to(
+      birdRef.current,
+      {
+        scale: 1,
+        duration: 0.5,
+        ease: "power1.out",
+      }
+    ).to(
+      birdRef.current,
+      {
+        scale: 40,
+        duration: 3,
+        translateX: 1000,
+        ease: "power1.out",
+      }
+    );
+  }
+
+
+  const transitionTrigger2 = () => {
+    if (appContainerRef.current) {
       gsap.to(appContainerRef.current, {
         backgroundColor: "#ffffff",
         duration: 1.5,
         ease: "power2.inOut"
       });
 
-      if (logoRef.current) {
+      if (logoRef.current && triggerAnimationRef.current && initialCooldown) {
+        console.log("this be working tho");
         gsap.fromTo(
           logoRef.current,
           { opacity: 0, scale: 0 },
@@ -39,7 +82,7 @@ function App() {
         );
       }
 
-      if (title.current) {
+      if (title.current && triggerAnimationRef.current && !initialCooldown) {
         gsap.to(title.current, {
           opacity: 0,
           duration: 1,
@@ -47,40 +90,34 @@ function App() {
         });
       }
     }
-  }, [triggerAnimation]);
+  }
 
-  const handleScrollAttempt = useCallback(() => {
-    console.log("Handle scroll attempt, cooldown:", isCooldown);
-
-    if (isCooldown) return;
-
-    console.log("Triggering animation!");
-
+  // Scroll attempt handler
+  const handleScrollAttempt = () => {
     setTriggerAnimation(true);
-    setIsCooldown(true);
+    triggerAnimationRef.current = true;
 
-    setTimeout(() => {
-      setIsCooldown(false);
-    }, 3000);
-  }, [isCooldown]); // Only depend on isCooldown
+    transitionTrigger1();
+    transitionTrigger2();
 
+  };
+
+  // Event listeners
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
-      if (["ArrowDown", "PageDown", "End", "Space"].includes(event.key)) {
+      if (["ArrowDown"].includes(event.key) && initialCooldown) {
         handleScrollAttempt();
+      } else {
+        return;
       }
     };
-
-    window.addEventListener("wheel", handleScrollAttempt);
     window.addEventListener("touchmove", handleScrollAttempt);
     window.addEventListener("keydown", handleKeydown);
-
     return () => {
-      window.removeEventListener("wheel", handleScrollAttempt);
       window.removeEventListener("touchmove", handleScrollAttempt);
       window.removeEventListener("keydown", handleKeydown);
     };
-  }, [handleScrollAttempt]); // This will re-add listeners if handleScrollAttempt changes
+  }, [initialCooldown]);
 
   return (
     <div
@@ -92,7 +129,11 @@ function App() {
         title={title}
         logoRef={logoRef}
       />
-      <Info />
+      <Info
+        logoRef={birdRef}
+        side1={side1}
+        side2={side2}
+      />
     </div>
   );
 }

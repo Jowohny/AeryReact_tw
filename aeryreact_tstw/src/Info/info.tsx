@@ -2,11 +2,14 @@ import logo from "../assets/images/logo.png";
 import { TypeAnimation } from "react-type-animation";
 import { RefObject } from "react";
 
-function Info({ logoRef, side1, side2 }: {
+function Info({ containerOn, logoRef, side1, side2 }: {
+    containerOn: boolean,
     logoRef: RefObject<null>,
     side1: RefObject<null>,
     side2: RefObject<null>
 }) {
+
+    if (!containerOn) return null;
 
     return (
         <div className="fade-in flex justify-between text-center h-5/6">

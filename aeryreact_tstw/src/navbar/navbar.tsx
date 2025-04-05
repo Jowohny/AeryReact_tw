@@ -3,10 +3,11 @@ import { RefObject } from "react";
 import logo from "../assets/images/logo2.png";
 
 function Navbar({ triggerAnimation, title, logoRef }: {
-    triggerAnimation: boolean;
-    title: RefObject<null>;
-    logoRef: RefObject<null>;
+    triggerAnimation: boolean,
+    title: RefObject<null>,
+    logoRef: RefObject<null>
 }) {
+
     return (
         <div className="flex-col justify-center items-center p-4 text-center h-1/6 relative">
             <div

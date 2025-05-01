@@ -10,9 +10,6 @@ function App() {
   const triggerAnimationRef = useRef(false);
   const [initialCooldown, setInitialCooldown] = useState(false);
 
-  //overlay cuz hardcoded tailwind gradient :(
-  const overlayRef = useRef(null);
-
   //current page check
   let currentPageRef = "start";
 
@@ -40,6 +37,8 @@ function App() {
   const johnyRef = useRef(null);
   const derekRef = useRef(null);
   const pengRef = useRef(null);
+  const meetRef = useRef(null);
+  const profileRef = useRef(null);
 
   // Initial 15-second cooldown
   useEffect(() => {
@@ -52,7 +51,7 @@ function App() {
 
   // Animation effect
   const transitionTrigger1 = () => {
-    const t1 = gsap.timeline({ paused: true });
+    const t1 = gsap.timeline();
 
     gsap.fromTo(
       [side1.current, side2.current],
@@ -70,67 +69,107 @@ function App() {
     ).to(
       birdRef.current,
       {
-        scale: 28, duration: 2, translateX: 1000, ease: "power1.out",
+        scale: 20,
+        duration: 1.8,
+        translateX: 1000,
+        ease: "power1.out",
+        delay: 0.2,
+        onComplete: () => {
+          setInfoContainer(false);
+        }
       }
-    );
-
-    if (currentPageRef == "start" && (recentButtonRef == "" || recentButtonRef == "down")) {
-      t1.play()
-    } else if (currentPageRef == "start" && recentButtonRef == "up") {
-      t1.play().reverse(0);
-    }
+    ).to(
+      appContainerRef.current,
+      {
+        css: {
+          background: "#ffffff",
+        }
+      },
+      "-=1"
+    ).fromTo(
+      logoRef.current,
+      { opacity: 0, scale: 0 },
+      {
+        scale: 0.7,
+        opacity: 1,
+        duration: 1.5,
+        ease: "power4.out",
+        onComplete: () => {
+          setTeamContainer(true);
+          requestAnimationFrame(() => {
+            if (meetRef.current && profileRef.current) {
+              gsap.fromTo(
+                [meetRef.current, profileRef.current],
+                {
+                  opacity: 0,
+                  translateX: -20
+                },
+                {
+                  opacity: 1,
+                  translateX: 20,
+                  duration: 1,
+                  stagger: 0.3
+                }
+              );
+            }
+          });
+        }
+      },
+      "-=1.1"
+    )
   }
 
 
+
   const transitionTrigger2 = () => {
-    if (overlayRef.current) {
-      gsap.fromTo(
-        overlayRef.current,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 1.5,
-          ease: "power2.inOut",
-          onComplete: () => {
-            gsap.to(appContainerRef.current, {
-              css: {
-                background: "#ffffff",
-              }
-            }
-            );
+    // if (overlayRef.current) {
+    //   gsap.fromTo(
+    //     overlayRef.current,
+    //     { opacity: 0 },
+    //     {
+    //       opacity: 1,
+    //       duration: 1.5,
+    //       ease: "power2.inOut",
+    //       onComplete: () => {
+    //         gsap.to(appContainerRef.current, {
+    //           css: {
+    //             background: "#ffffff",
+    //           }
+    //         }
+    //         );
 
-            // Make the overlay invisible again
-            gsap.to(overlayRef.current, {
-              opacity: 0,
-              duration: 0.1
-            });
-          }
-        }
-      );
-    }
+    //         // Make the overlay invisible again
+    //         gsap.to(overlayRef.current, {
+    //           opacity: 0,
+    //           duration: 0.1
+    //         });
+    //       }
+    //     }
+    //   );
+    // }
 
-    if (logoRef.current && triggerAnimationRef.current && initialCooldown) {
-      gsap.fromTo(
-        logoRef.current,
-        { opacity: 0, scale: 0 },
-        {
-          scale: 0.8, opacity: 1, duration: 1.5, ease: "power4.out", delay: 2,
-          onComplete: () => {
-            setInfoContainer(false);
-            setTeamContainer(true);
-          }
-        }
-      );
+    // if (logoRef.current && triggerAnimationRef.current && initialCooldown) {
+    //   gsap.fromTo(
+    //     logoRef.current,
+    //     { opacity: 0, scale: 0 },
+    //     {
+    //       scale: 0.8, opacity: 1, duration: 1.5, ease: "power4.out", delay: 2,
+    //       onComplete: () => {
+    //         setInfoContainer(false);
+    //         setTeamContainer(true);
+    //       }
+    //     }
+    //   );
 
 
-      if (title.current && triggerAnimationRef.current && !initialCooldown) {
-        gsap.to(title.current, {
-          opacity: 0,
-          duration: 1,
-          ease: "linear"
-        });
-      }
-    }
+    //   if (title.current && triggerAnimationRef.current && !initialCooldown) {
+    //     gsap.to(title.current, {
+    //       opacity: 0,
+    //       duration: 1,
+    //       ease: "linear"
+    //     });
+    //   }
+    // }
   }
 
   // Scroll attempt handler
@@ -139,10 +178,8 @@ function App() {
     triggerAnimationRef.current = true;
     if (currentPageRef == "start" && (recentButtonRef == "" || recentButtonRef == "down")) {
       transitionTrigger1();
-      transitionTrigger2();
     } else if (currentPageRef == "team" && recentButtonRef == "up") {
       transitionTrigger2();
-      transitionTrigger1();
     }
   };
 
@@ -192,6 +229,8 @@ function App() {
         johnyRef={johnyRef}
         derekRef={derekRef}
         pengRef={pengRef}
+        meetRef={meetRef}
+        profileRef={profileRef}
       />
     </div>
   );

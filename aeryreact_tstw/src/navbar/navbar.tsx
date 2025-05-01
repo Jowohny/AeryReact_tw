@@ -16,11 +16,11 @@ function Navbar({ triggerAnimation, title, logoRef }: {
             >
                 {!triggerAnimation && (
                     <TypeAnimation
-                        className="text-white text-4xl font-bold"
+                        className="text-white text-5xl font-bold"
                         sequence={[
-                            3000,
+                            2500,
                             "Welcome to AERY",
-                            6000,
+                            5000,
                             "Personal and Private Email Assistant",
                         ]}
                         speed={15}

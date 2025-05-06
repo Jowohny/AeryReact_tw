@@ -10,6 +10,7 @@ function App() {
   const [triggerAnimation, setTriggerAnimation] = useState(false);
   const triggerAnimationRef = useRef(false);
   const [initialCooldown, setInitialCooldown] = useState(true);
+  const [animationInProgress, setAnimationInProgress] = useState(false);
 
   //current page check
   const [currentPage, setCurrentPage] = useState("start");
@@ -53,6 +54,8 @@ function App() {
 
   const transitionTrigger1 = () => {
     const t1 = gsap.timeline();
+
+    setAnimationInProgress(true);
 
     gsap.to(
       [title.current, side1.current, side2.current],
@@ -122,6 +125,9 @@ function App() {
                 }
               );
             }
+
+            setAnimationInProgress(false);
+
           });
         }
       },
@@ -131,6 +137,8 @@ function App() {
 
   const transitionTrigger2 = () => {
     const t2 = gsap.timeline();
+
+    setAnimationInProgress(true);
 
     t2.to(
       [profileRef.current, meetRef.current],
@@ -178,6 +186,7 @@ function App() {
                 }
               );
             }
+            setAnimationInProgress(false);
           });
         }
       },
@@ -188,7 +197,7 @@ function App() {
 
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
-      if (initialCooldown) { return; }
+      if (initialCooldown || animationInProgress) { return; }
 
       console.log("Key pressed:", event.key, "Current page:", currentPage);
 
@@ -209,7 +218,7 @@ function App() {
     return () => {
       window.removeEventListener("keydown", handleKeydown);
     };
-  }, [initialCooldown, currentPage]);
+  }, [initialCooldown, currentPage, animationInProgress]);
 
   return (
     <div

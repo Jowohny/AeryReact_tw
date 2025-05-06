@@ -6,12 +6,13 @@ import gsap from 'gsap';
 
 function App() {
   //boolean states
+  const [pageRestarted, setPageRestarted] = useState(true);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
   const triggerAnimationRef = useRef(false);
-  const [initialCooldown, setInitialCooldown] = useState(false);
+  const [initialCooldown, setInitialCooldown] = useState(true);
 
   //current page check
-  let currentPageRef = "start";
+  const [currentPage, setCurrentPage] = useState("start");
 
   //recent button press check
   let recentButtonRef = "";
@@ -31,38 +32,47 @@ function App() {
   const side2 = useRef(null);
 
   //team.tsx references
-  const sanskarRef = useRef(null);
-  const joshuaRef = useRef(null);
-  const kaelynRef = useRef(null);
-  const johnyRef = useRef(null);
-  const derekRef = useRef(null);
-  const pengRef = useRef(null);
   const meetRef = useRef(null);
   const profileRef = useRef(null);
 
-  // Initial 15-second cooldown
   useEffect(() => {
     const cooldownTimer = setTimeout(() => {
-      setInitialCooldown(true);
+      setInitialCooldown(false);
     }, 5000);
 
     return () => clearTimeout(cooldownTimer);
   }, []);
 
-  // Animation effect
+  useEffect(() => {
+    const cooldownTimer = setTimeout(() => {
+      setPageRestarted(false);
+    }, 2000);
+
+    return () => clearTimeout(cooldownTimer);
+  }, []);
+
   const transitionTrigger1 = () => {
     const t1 = gsap.timeline();
 
-    gsap.fromTo(
-      [side1.current, side2.current],
-      { opacity: 1 },
-      { opacity: 0, duration: 0.5 }
+    gsap.to(
+      [title.current, side1.current, side2.current],
+      {
+        opacity: 0,
+        duration: 1,
+        translateY: -10,
+      }
     );
 
     t1.fromTo(
       birdRef.current,
       { scale: 1 },
-      { scale: 1.1, duration: 1, ease: "bounce.in" },
+      {
+        scale: 1.1,
+        duration: 1,
+        ease: "bounce.in",
+        onComplete: () => {
+        }
+      },
     ).to(
       birdRef.current,
       { scale: 1, duration: 0.5, ease: "power1.out" }
@@ -92,7 +102,7 @@ function App() {
       {
         scale: 0.7,
         opacity: 1,
-        duration: 1.5,
+        duration: 1,
         ease: "power4.out",
         onComplete: () => {
           setTeamContainer(true);
@@ -115,95 +125,91 @@ function App() {
           });
         }
       },
-      "-=1.1"
+      "-=1.2"
     )
   }
 
-
-
   const transitionTrigger2 = () => {
-    // if (overlayRef.current) {
-    //   gsap.fromTo(
-    //     overlayRef.current,
-    //     { opacity: 0 },
-    //     {
-    //       opacity: 1,
-    //       duration: 1.5,
-    //       ease: "power2.inOut",
-    //       onComplete: () => {
-    //         gsap.to(appContainerRef.current, {
-    //           css: {
-    //             background: "#ffffff",
-    //           }
-    //         }
-    //         );
+    const t2 = gsap.timeline();
 
-    //         // Make the overlay invisible again
-    //         gsap.to(overlayRef.current, {
-    //           opacity: 0,
-    //           duration: 0.1
-    //         });
-    //       }
-    //     }
-    //   );
-    // }
-
-    // if (logoRef.current && triggerAnimationRef.current && initialCooldown) {
-    //   gsap.fromTo(
-    //     logoRef.current,
-    //     { opacity: 0, scale: 0 },
-    //     {
-    //       scale: 0.8, opacity: 1, duration: 1.5, ease: "power4.out", delay: 2,
-    //       onComplete: () => {
-    //         setInfoContainer(false);
-    //         setTeamContainer(true);
-    //       }
-    //     }
-    //   );
-
-
-    //   if (title.current && triggerAnimationRef.current && !initialCooldown) {
-    //     gsap.to(title.current, {
-    //       opacity: 0,
-    //       duration: 1,
-    //       ease: "linear"
-    //     });
-    //   }
-    // }
+    t2.to(
+      [profileRef.current, meetRef.current],
+      {
+        translateX: 20,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2
+      }
+    ).to(
+      logoRef.current,
+      {
+        scale: 0,
+        opacity: 0.5,
+        ease: "bounce.in",
+        duration: 1,
+        onComplete: () => {
+          setTeamContainer(false);
+          setInfoContainer(true);
+          requestAnimationFrame(() => {
+            if (title.current && birdRef.current) {
+              const t3 = gsap.timeline();
+              t3.to(
+                appContainerRef.current,
+                {
+                  clearProps: "background",
+                  duration: 0
+                }
+              ).fromTo(
+                birdRef.current,
+                {
+                  scale: 20,
+                  opacity: 1
+                },
+                {
+                  scale: 1,
+                  duration: 2,
+                  ease: "bounce.out",
+                }
+              ).to(
+                title.current,
+                {
+                  opacity: 1,
+                  duration: 3
+                }
+              );
+            }
+          });
+        }
+      },
+      "-=0.05"
+    )
+    setTriggerAnimation(false)
   }
 
-  // Scroll attempt handler
-  const handleScrollAttempt = () => {
-    setTriggerAnimation(true);
-    triggerAnimationRef.current = true;
-    if (currentPageRef == "start" && (recentButtonRef == "" || recentButtonRef == "down")) {
-      transitionTrigger1();
-    } else if (currentPageRef == "team" && recentButtonRef == "up") {
-      transitionTrigger2();
-    }
-  };
-
-  // Event listeners
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
-      if (["ArrowDown"].includes(event.key) && initialCooldown && currentPageRef == "start") {
-        handleScrollAttempt();
-        currentPageRef = "team";
+      if (initialCooldown) { return; }
+
+      console.log("Key pressed:", event.key, "Current page:", currentPage);
+
+      if (event.key === "ArrowDown" && currentPage === "start") {
+        console.log("Down arrow detected - moving to team page");
+        transitionTrigger1();
+        setCurrentPage("team");
         recentButtonRef = "down";
-      } else if (["ArrowUp"].includes(event.key) && initialCooldown && currentPageRef == "team") {
-        currentPageRef = "start";
+      } else if (event.key === "ArrowUp" && currentPage === "team") {
+        console.log("Up arrow detected - moving back to start");
+        transitionTrigger2();
+        setCurrentPage("start");
         recentButtonRef = "up";
-        return;
       }
     };
 
     window.addEventListener("keydown", handleKeydown);
-    window.addEventListener("keyup", handleKeydown);
     return () => {
       window.removeEventListener("keydown", handleKeydown);
-      window.addEventListener("keyup", handleKeydown);
     };
-  }, [initialCooldown]);
+  }, [initialCooldown, currentPage]);
 
   return (
     <div
@@ -216,6 +222,7 @@ function App() {
         logoRef={logoRef}
       />
       <Info
+        restarted={pageRestarted}
         containerOn={infoContainerOnRef}
         logoRef={birdRef}
         side1={side1}
@@ -223,12 +230,6 @@ function App() {
       />
       <Team
         containerOn={teamContainerOnRef}
-        sanskarRef={sanskarRef}
-        joshuaRef={joshuaRef}
-        kaelynRef={kaelynRef}
-        johnyRef={johnyRef}
-        derekRef={derekRef}
-        pengRef={pengRef}
         meetRef={meetRef}
         profileRef={profileRef}
       />

@@ -6,14 +6,8 @@ import kaelyn from "../assets/images/kaelyn.jpg";
 import johny from "../assets/images/johny.jpg";
 import peng from "../assets/images/peng.jpg";
 
-function Team({ containerOn, sanskarRef, joshuaRef, kaelynRef, johnyRef, pengRef, meetRef, profileRef }: {
+function Team({ containerOn, meetRef, profileRef }: {
     containerOn: boolean,
-    sanskarRef: RefObject<null>,
-    joshuaRef: RefObject<null>,
-    kaelynRef: RefObject<null>,
-    johnyRef: RefObject<null>,
-    derekRef: RefObject<null>,
-    pengRef: RefObject<null>,
     meetRef: RefObject<null>,
     profileRef: RefObject<null>,
 }) {
@@ -21,31 +15,26 @@ function Team({ containerOn, sanskarRef, joshuaRef, kaelynRef, johnyRef, pengRef
         {
             name: "Sanskar",
             image: sanskar,
-            ref: sanskarRef,
             description: "Backend specialist focusing on system architecture and API development."
         },
         {
             name: "Joshua",
             image: joshua,
-            ref: joshuaRef,
             description: "Full-stack developer skilled in both frontend and backend technologies."
         },
         {
             name: "Kaelyn",
             image: kaelyn,
-            ref: kaelynRef,
             description: "Frontend developer with expertise in React and UI/UX design."
         },
         {
             name: "Johny",
             image: johny,
-            ref: johnyRef,
             description: "Webmaster and animator with experience in frontend technologies."
         },
         {
             name: "Peng",
             image: peng,
-            ref: pengRef,
             description: "Marketing and Research"
         }
     ];
@@ -78,7 +67,6 @@ function Team({ containerOn, sanskarRef, joshuaRef, kaelynRef, johnyRef, pengRef
                 <div className="relative w-full max-w-md mx-auto py-16 mx-8">
                     <div className="h-64 w-64 mx-auto overflow-hidden rounded-full mb-4">
                         <img
-                            ref={teamMembers[currentIndex].ref as any}
                             src={`${teamMembers[currentIndex].image}`}
                             alt={`${teamMembers[currentIndex].name} profile`}
                             className="h-full w-full object-cover"

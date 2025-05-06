@@ -12,22 +12,20 @@ function Navbar({ triggerAnimation, title, logoRef }: {
         <div className="flex-col justify-center items-center p-4 text-center h-1/6 relative">
             <div
                 ref={title}
-                className={`fade-in absolute inset-0 flex items-center justify-center ${triggerAnimation ? 'pointer-events-none' : ''}`}
+                className="fade-in absolute inset-0 flex items-center justify-center"
             >
-                {!triggerAnimation && (
-                    <TypeAnimation
-                        className="text-white text-5xl font-bold"
-                        sequence={[
-                            2500,
-                            "Welcome to AERY",
-                            5000,
-                            "Personal and Private Email Assistant",
-                        ]}
-                        speed={15}
-                        repeat={Infinity}
-                        cursor={false}
-                    />
-                )}
+                <TypeAnimation
+                    className="text-white text-5xl font-bold"
+                    sequence={[
+                        2000,
+                        "Welcome to AERY",
+                        5000,
+                        "Personal and Private Email Assistant",
+                    ]}
+                    speed={15}
+                    repeat={Infinity}
+                    cursor={false}
+                />
             </div>
 
             <div className="absolute inset-0 flex items-center justify-center">

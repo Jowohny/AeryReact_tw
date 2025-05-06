@@ -12,45 +12,7 @@
   }
 }
 
-@keyframes zoomInLogo {
-  0% {
-    scale: 1;
-  }
-
-  20% {
-    scale: 19;
-    translate: 200px;
-  }
-
-  to {
-    scale: 30;
-  }
-}
-
-@keyframes zoomOutLogo {
-  0% {
-    scale: 1;
-  }
-
-  20% {
-    scale: 19;
-    translate: 200px;
-  }
-
-  to {
-    scale: 40;
-  }
-}
-
 
 .fade-in {
-  animation: fadeIn 3s ease-in;
-}
-
-.zoom-in-logo {
-  animation: zoomInLogo 10s ease-in forwards;
-}
-
-.zoom-out-logo {
-  animation: zoomInLogo 2s ease-in forwards;
+  animation: fadeIn 2s ease-in;
 }

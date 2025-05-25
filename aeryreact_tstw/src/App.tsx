@@ -87,6 +87,7 @@ function App() {
 
   const transitionTrigger1 = () => {
     const t1 = gsap.timeline();
+    setTriggerAnimation(triggerAnimation);
 
     setAnimationInProgress(true);
 

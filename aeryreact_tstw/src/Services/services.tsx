@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,35 +12,25 @@ interface Service {
 
 const services: Service[] = [
     {
-        title: "Web Development",
-        description: "Custom web applications built with modern technologies and best practices.",
-        icon: "💻"
-    },
-    {
-        title: "Mobile Development",
-        description: "Native and cross-platform mobile applications for iOS and Android.",
-        icon: "📱"
-    },
-    {
-        title: "UI/UX Design",
-        description: "Beautiful and intuitive user interfaces that enhance user experience.",
-        icon: "🎨"
-    },
-    {
-        title: "Cloud Solutions",
-        description: "Scalable cloud infrastructure and deployment solutions.",
-        icon: "☁️"
-    },
-    {
-        title: "AI & Machine Learning",
-        description: "Intelligent solutions powered by cutting-edge AI and ML technologies.",
+        title: "Artificial Intelligence",
+        description: "Providing your own personal and private on-device AI assistant.",
         icon: "🤖"
     },
     {
-        title: "DevOps",
-        description: "Streamlined development and deployment processes with modern DevOps practices.",
-        icon: "🔄"
-    }
+        title: "Mobile Development",
+        description: "Creating NATIVE mobile applications for both iOS and Android.",
+        icon: "📱"
+    },
+    {
+        title: "User Interface",
+        description: "Beautiful and intuitive user interfaces that makes the app easy to use.",
+        icon: "🖥️"
+    },    
+    {
+        title: "User Experience",
+        description: "Nice and simple animations that make the app more engaging and fun to use.",
+        icon: "👨🏻‍💻"
+    },
 ];
 
 function Services({ servicesRef, serviceItemsRef }: {

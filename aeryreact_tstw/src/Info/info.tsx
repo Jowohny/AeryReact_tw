@@ -22,21 +22,37 @@ function Info({ restarted, containerOn, logoRef, side1, side2 }: {
 
             if (!logoRef.current) return;
 
-            t1.to(logoRef.current, {
-                y: -20,
-                rotation: 5,
-                duration: 2,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true
-            }).to(logoRef.current, {
+            t1.fromTo(
+                logoRef.current,
+                {
+                    opacity: 0
+                },
+                {
+                    opacity: 1,
+                    duration: 1
+                }
+            ).to(
+                logoRef.current, 
+                {
+                    y: -20,
+                    rotation: 5,
+                    duration: 2,
+                    ease: "sine.inOut",
+                    repeat: -1,
+                    yoyo: true
+                },
+                "-=1"
+           ).to(
+                logoRef.current, 
+                {
                 y: 20,
-                rotation: -5,
-                duration: 2,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true
-            });
+                    rotation: -5,
+                    duration: 2,
+                    ease: "sine.inOut",
+                    repeat: -1,
+                    yoyo: true
+                }
+            );
         };
 
         animateLogo();
@@ -48,12 +64,12 @@ function Info({ restarted, containerOn, logoRef, side1, side2 }: {
         <div ref={containerRef} className="relative min-h-screen py-16 overflow-hidden">
             <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
 
-            <div className="flex flex-rowjustify-between text-center relative z-10 content-start py-20">
+            <div className="flex flex-row justify-between text-center relative z-10 content-start py-20">
                 <div className="w-1/3">
-                    <div ref={side1} className="w-4/5 mx-auto">
+                    <div ref={side1} className="w-4/5 mx-auto p-1/6">
                         <TypeAnimation
                             className={`text-2xl font-bold ${styles.title}`}
-                            sequence={[3000, "Origin Story"]}
+                            sequence={[1000, "Origin Story"]}
                             speed={15}
                             cursor={false}
                         />
@@ -61,7 +77,7 @@ function Info({ restarted, containerOn, logoRef, side1, side2 }: {
                             <TypeAnimation
                                 className={`text-s font-bold ${styles.content}`}
                                 sequence={[
-                                    4000,
+                                    1500,
                                     "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
                                 ]}
                                 speed={90}
@@ -87,7 +103,7 @@ function Info({ restarted, containerOn, logoRef, side1, side2 }: {
                     <div ref={side2} className="w-4/5 mx-auto">
                         <TypeAnimation
                             className={`text-2xl font-bold ${styles.title}`}
-                            sequence={[4500, "About Us"]}
+                            sequence={[1500, "About Us"]}
                             speed={15}
                             cursor={false}
                         />
@@ -95,7 +111,7 @@ function Info({ restarted, containerOn, logoRef, side1, side2 }: {
                             <TypeAnimation
                                 className={`text-s font-bold ${styles.content}`}
                                 sequence={[
-                                    5000,
+                                    2000,
                                     "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
                                 ]}
                                 speed={90}

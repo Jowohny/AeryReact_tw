@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -13,22 +13,10 @@ interface Project {
 
 const projects: Project[] = [
     {
-        title: "E-commerce Platform",
+        title: "AeryMail",
         description: "A modern e-commerce platform with real-time inventory management and payment processing.",
-        image: "/src/assets/images/placeholders/project1.png",
-        technologies: ["React", "Node.js", "MongoDB", "Stripe"]
-    },
-    {
-        title: "AI Chat Application",
-        description: "An intelligent chat application powered by machine learning for natural language processing.",
-        image: "/src/assets/images/placeholders/project2.png",
-        technologies: ["Python", "TensorFlow", "React", "WebSocket"]
-    },
-    {
-        title: "Portfolio Website",
-        description: "A responsive portfolio website showcasing creative work and professional experience.",
-        image: "/src/assets/images/placeholders/project3.png",
-        technologies: ["React", "GSAP", "Tailwind CSS", "TypeScript"]
+        image: "../src/assets/images/logo2.png",
+        technologies: ["Executorch", "React Native", "Expo", "Expo Router"]
     }
 ];
 
@@ -84,9 +72,8 @@ function Projects({ projectsRef, projectCardsRef }: {
     }, []);
 
     return (
-        <div ref={projectsRef} className="min-h-screen py-16">
-            <h2 className="text-4xl font-bold text-center mb-12 text-white">Our Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={projectsRef} className="min-h-screen py-40">
+            <div className="grid grid-cols-3 gap-8">
                 {projects.map((project, index) => (
                     <div
                         key={project.title}
@@ -95,13 +82,13 @@ function Projects({ projectsRef, projectCardsRef }: {
                                 projectCardsRef.current[index] = el;
                             }
                         }}
-                        className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105"
+                        className="bg-white rounded-lg overflow-hidden shadow-lg"
                     >
-                        <div className="relative h-48 overflow-hidden">
+                        <div className="relative h-48 overflow-hidden justify-items-center content-center">
                             <img
                                 src={project.image}
                                 alt={project.title}
-                                className="w-full h-full object-cover"
+                                className="h-2/3 object-cover"
                             />
                         </div>
                         <div className="p-6">

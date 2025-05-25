@@ -52,8 +52,8 @@ function Team({ containerOn, meetRef, profileRef }: {
     if (!containerOn) return null;
 
     return (
-        <div className="h-screen flex flex-col md:flex-row md:mx-8 lg:mx-16 gap-8 justify-center">
-            <div ref={meetRef} className="w-full md:w-2/5 flex-col justify-center ml-12 mr-24 content-center py-44">
+        <div className="h-screen flex flex-col md:flex-row md:mx-8 lg:mx-16 gap-8 justify-center py-20">
+            <div ref={meetRef} className="w-full md:w-2/5 flex-col justify-center ml-12 mr-24 content-start py-44">
                 <h1 className="text-4x1 font-bold mb-6">Meet The Team!</h1>
                 <p className="text-lg mb-6">
                     Our talented team brings together diverse skills and perspectives to deliver
@@ -63,7 +63,7 @@ function Team({ containerOn, meetRef, profileRef }: {
                 </p>
             </div>
 
-            <div ref={profileRef} className="w-full md:w-2/5 content-center">
+            <div ref={profileRef} className="w-full md:w-2/5 content-start">
                 <div className="relative w-full max-w-md mx-auto py-16 mx-8">
                     <div className="h-64 w-64 mx-auto overflow-hidden rounded-full mb-4">
                         <img

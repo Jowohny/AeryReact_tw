@@ -1,5 +1,4 @@
-import { TypeAnimation } from "react-type-animation";
-import { RefObject, useEffect, useRef } from "react";
+import {useEffect, useRef } from "react";
 import logo from "../assets/images/logo2.png";
 import gsap from 'gsap';
 
@@ -7,9 +6,6 @@ interface NavbarProps {
     currentPage: string;
     setCurrentPage: (page: string) => void;
     animationInProgress: boolean;
-    transitionTrigger1: () => void;
-    transitionTrigger2: () => void;
-    transitionTrigger3: () => void;
     setInfoContainer: (value: boolean) => void;
     setTeamContainer: (value: boolean) => void;
     setContactContainer: (value: boolean) => void;
@@ -17,7 +13,7 @@ interface NavbarProps {
     setServicesContainer: (value: boolean) => void;
 }
 
-function Navbar({ currentPage, setCurrentPage, animationInProgress, transitionTrigger1, transitionTrigger2, transitionTrigger3, setInfoContainer, setTeamContainer, setContactContainer, setProjectsContainer, setServicesContainer }: NavbarProps) {
+function Navbar({ currentPage, setCurrentPage, animationInProgress, setInfoContainer, setTeamContainer, setContactContainer, setProjectsContainer, setServicesContainer }: NavbarProps) {
     const navRef = useRef<HTMLDivElement>(null);
     const linksRef = useRef<HTMLDivElement>(null);
 
@@ -106,7 +102,7 @@ function Navbar({ currentPage, setCurrentPage, animationInProgress, transitionTr
 
     return (
         <nav ref={navRef} className="bg-gray-900 bg-opacity-90 backdrop-blur-sm fixed w-full z-50">
-            <div className="container mx-auto px-4">
+            <div className="px-4">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center">
                         <img src={logo} alt="logo" className="h-8 w-auto" />

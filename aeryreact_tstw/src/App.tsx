@@ -6,15 +6,12 @@ import Services from "./Services/services";
 import Footer from "./Footer/footer";
 import { useState, useEffect, useRef } from "react";
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   //boolean states
   const [pageRestarted, setPageRestarted] = useState(true);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
-  const triggerAnimationRef = useRef(false);
   const [initialCooldown, setInitialCooldown] = useState(true);
   const [animationInProgress, setAnimationInProgress] = useState(false);
 
@@ -331,28 +328,12 @@ function App() {
       setContactContainer(false);
       setProjectsContainer(true);
       setServicesContainer(false);
-      if (appContainerRef.current) {
-        gsap.to(appContainerRef.current, {
-          css: {
-            background: "linear-gradient(to bottom, var(--aery-purple), #d6d3f8)",
-          },
-          duration: 1
-        });
-      }
     } else if (currentPage === "services") {
       setInfoContainer(false);
       setTeamContainer(false);
       setContactContainer(false);
       setProjectsContainer(false);
       setServicesContainer(true);
-      if (appContainerRef.current) {
-        gsap.to(appContainerRef.current, {
-          css: {
-            background: "linear-gradient(to bottom, var(--aery-purple), #d6d3f8)",
-          },
-          duration: 1
-        });
-      }
     }
   }, [currentPage]);
 
@@ -362,16 +343,13 @@ function App() {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         animationInProgress={animationInProgress}
-        transitionTrigger1={transitionTrigger1}
-        transitionTrigger2={transitionTrigger2}
-        transitionTrigger3={transitionTrigger3}
         setInfoContainer={setInfoContainer}
         setTeamContainer={setTeamContainer}
         setContactContainer={setContactContainer}
         setProjectsContainer={setProjectsContainer}
         setServicesContainer={setServicesContainer}
       />
-      <div className="container mx-auto my-auto">
+      <div className="container mx-auto">
         {infoContainerOnRef && (
           <Info
             restarted={pageRestarted}

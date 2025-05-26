@@ -73,11 +73,6 @@ function Services({ servicesRef, serviceItemsRef }: {
                     scale: 1,
                     duration: 1,
                     ease: "elastic.out(1, 0.3)",
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top bottom-=100",
-                        toggleActions: "play none none reverse"
-                    },
                     delay: index * 0.2
                 }
             );
@@ -85,8 +80,7 @@ function Services({ servicesRef, serviceItemsRef }: {
     }, []);
 
     return (
-        <div ref={servicesRef} className="min-h-screen py-16">
-            <h2 className="text-4xl font-bold text-center mb-12 text-white">Our Services</h2>
+        <div ref={servicesRef} className="min-h-screen py-40">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {services.map((service, index) => (
                     <div

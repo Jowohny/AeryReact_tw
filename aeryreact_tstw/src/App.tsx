@@ -1,6 +1,7 @@
 import Navbar from "./navbar/navbar";
 import Info from "./Info/info";
 import Team from "./team/team";
+import Contact from './Contact/Contact';
 import Projects from "./Projects/projects";
 import Services from "./Services/services";
 import Footer from "./Footer/footer";
@@ -339,7 +340,7 @@ function App() {
   }, [currentPage]);
 
   return (
-    <div ref={appContainerRef} className="min-h-screen bg-gradient-to-b from-[var(--aery-purple)] to-[#d6d3f8] transition-all duration-1000">
+    <div ref={appContainerRef} className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Navbar
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
@@ -350,36 +351,38 @@ function App() {
         setProjectsContainer={setProjectsContainer}
         setServicesContainer={setServicesContainer}
       />
-      <div className="container mx-auto">
         {infoContainerOnRef && (
           <Info
             restarted={pageRestarted}
             containerOn={infoContainerOnRef}
             logoRef={logoRef}
-            side1={side1}
-            side2={side2}
           />
         )}
-        {teamContainerOnRef && (
-          <Team
-            containerOn={teamContainerOnRef}
-            meetRef={meetRef}
-            profileRef={profileRef}
-          />
-        )}
-        {projectsContainerOnRef && (
-          <Projects
-            projectsRef={projectsRef}
-            projectCardsRef={projectCardsRef}
-          />
-        )}
-        {servicesContainerOnRef && (
-          <Services
-            servicesRef={servicesRef}
-            serviceItemsRef={serviceItemsRef}
-          />
-        )}
-      </div>
+        <div className="container mx-auto">
+          {teamContainerOnRef && (
+            <Team
+              containerOn={teamContainerOnRef}
+              meetRef={meetRef}
+              profileRef={profileRef}
+            />
+          )}
+          {projectsContainerOnRef && (
+            <Projects
+              projectsRef={projectsRef}
+              projectCardsRef={projectCardsRef}
+            />
+          )}
+          {servicesContainerOnRef && (
+            <Services
+              servicesRef={servicesRef}
+              serviceItemsRef={serviceItemsRef}
+            />
+          )}
+          {contactContainerOnRef && (
+            <Contact />
+          )}
+        </div>
+
       <Footer />
     </div>
   );

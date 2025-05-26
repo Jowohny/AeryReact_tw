@@ -33,9 +33,7 @@ function App() {
 
   //info.tsx references
   const birdRef = useRef<HTMLImageElement | null>(null);
-  const side1 = useRef<HTMLDivElement | null>(null);
-  const side2 = useRef<HTMLDivElement | null>(null);
-
+  
   //team.tsx references
   const meetRef = useRef<HTMLDivElement | null>(null);
   const profileRef = useRef<HTMLDivElement | null>(null);
@@ -92,9 +90,9 @@ function App() {
 
     setAnimationInProgress(true);
 
-    if (title.current && side1.current && side2.current) {
+    if (title.current) {
       gsap.to(
-        [title.current, side1.current, side2.current],
+        title.current,
         {
           opacity: 0,
           duration: 1,

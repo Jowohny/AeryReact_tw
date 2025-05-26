@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const ContactPage = () => {
+const Contact = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const introTextRef = useRef<HTMLParagraphElement>(null);
@@ -93,4 +93,4 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+export default Contact;

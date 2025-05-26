@@ -2,12 +2,10 @@ import logo from "../assets/images/logo2.png";
 import { RefObject, useEffect, useRef } from "react";
 import gsap from 'gsap';
 
-function Info({ restarted, containerOn, logoRef, side1, side2 }: {
+function Info({ restarted, containerOn, logoRef}: {
     restarted: boolean,
     containerOn: boolean,
     logoRef: RefObject<HTMLImageElement | null>,
-    side1: RefObject<HTMLDivElement | null>,
-    side2: RefObject<HTMLDivElement | null>
 }) {
     const containerRef = useRef<HTMLDivElement>(null);
 

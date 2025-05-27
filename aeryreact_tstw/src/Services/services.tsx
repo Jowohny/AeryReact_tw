@@ -90,11 +90,11 @@ function Services({ servicesRef, serviceItemsRef }: {
                                 serviceItemsRef.current[index] = el;
                             }
                         }}
-                        className="bg-white rounded-lg p-8 shadow-lg transform transition-all duration-300 hover:scale-105"
+                        className="bg-white/15 rounded-2xl shadow-2xl border border-white/20 rounded-lg p-8 shadow-lg"
                     >
                         <div className="text-4xl mb-4">{service.icon}</div>
-                        <h3 className="text-xl font-bold mb-2 text-gray-800">{service.title}</h3>
-                        <p className="text-gray-600">{service.description}</p>
+                        <h3 className="text-xl font-bold mb-2 text-gray-800 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">{service.title}</h3>
+                        <p className="text-white">{service.description}</p>
                     </div>
                 ))}
             </div>

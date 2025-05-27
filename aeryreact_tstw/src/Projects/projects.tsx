@@ -60,11 +60,6 @@ function Projects({ projectsRef, projectCardsRef }: {
                     scale: 1,
                     duration: 1,
                     ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top bottom-=100",
-                        toggleActions: "play none none reverse"
-                    },
                     delay: index * 0.2
                 }
             );
@@ -82,7 +77,7 @@ function Projects({ projectsRef, projectCardsRef }: {
                                 projectCardsRef.current[index] = el;
                             }
                         }}
-                        className="bg-white rounded-lg overflow-hidden shadow-lg"
+                        className="bg-white/10 border border-white/20 rounded-lg overflow-hidden shadow-lg"
                     >
                         <div className="relative h-48 overflow-hidden justify-items-center content-center">
                             <img
@@ -92,8 +87,8 @@ function Projects({ projectsRef, projectCardsRef }: {
                             />
                         </div>
                         <div className="p-6">
-                            <h3 className="text-xl font-bold mb-2 text-gray-800">{project.title}</h3>
-                            <p className="text-gray-600 mb-4">{project.description}</p>
+                            <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">{project.title}</h3>
+                            <p className="text-white mb-4">{project.description}</p>
                             <div className="flex flex-wrap gap-2">
                                 {project.technologies.map(tech => (
                                     <span

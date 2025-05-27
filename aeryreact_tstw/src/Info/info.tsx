@@ -58,16 +58,14 @@ function Info({ restarted, containerOn, logoRef}: {
     return (
         <div ref={containerRef} className="relative min-h-screen py-16 overflow-hidden">
  
-            <div className="flex relative z-10 content-start justify-center py-20">
-                <div className={`${restarted ? "fade-in" : ""}`}>
+                <div className={`flex relative z-10 content-start justify-center py-20 ${restarted ? "fade-in" : ""}`}>
                     <img
                         ref={logoRef}
                         src={logo}
                         alt="aery logo"
-                        className="w-full max-w-1/3 z-0 drop-shadow-2xl"
+                        className="w-2/5 z-0 drop-shadow-2xl"
                     />
                 </div>
-            </div>
         </div>
     );
 }

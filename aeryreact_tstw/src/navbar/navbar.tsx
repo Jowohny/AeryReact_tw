@@ -2,18 +2,8 @@ import {useEffect, useRef } from "react";
 import logo from "../assets/images/logo2.png";
 import gsap from 'gsap';
 
-interface NavbarProps {
-    currentPage: string;
-    setCurrentPage: (page: string) => void;
-    animationInProgress: boolean;
-    setInfoContainer: (value: boolean) => void;
-    setTeamContainer: (value: boolean) => void;
-    setContactContainer: (value: boolean) => void;
-    setProjectsContainer: (value: boolean) => void;
-    setServicesContainer: (value: boolean) => void;
-}
 
-function Navbar({ currentPage, setCurrentPage, animationInProgress, setInfoContainer, setTeamContainer, setContactContainer, setProjectsContainer, setServicesContainer }: NavbarProps) {
+function Navbar() {
     const navRef = useRef<HTMLDivElement>(null);
     const linksRef = useRef<HTMLDivElement>(null);
 
@@ -51,55 +41,6 @@ function Navbar({ currentPage, setCurrentPage, animationInProgress, setInfoConta
         );
     }, []);
 
-    const handleNavigation = (page: string) => {
-        if (animationInProgress) return;
-
-        switch (page) {
-            case "start":
-                setCurrentPage(page);
-                setInfoContainer(true);
-                setTeamContainer(false);
-                setContactContainer(false);
-                setProjectsContainer(false);
-                setServicesContainer(false);
-                break;
-            case "team":
-                setCurrentPage(page);
-                setInfoContainer(false);
-                setTeamContainer(true);
-                setContactContainer(false);
-                setProjectsContainer(false);
-                setServicesContainer(false);
-                break;
-            case "contact":
-                setCurrentPage(page);
-                setInfoContainer(false);
-                setTeamContainer(false);
-                setContactContainer(true);
-                setProjectsContainer(false);
-                setServicesContainer(false);
-                break;
-            case "projects":
-                setCurrentPage(page);
-                setInfoContainer(false);
-                setTeamContainer(false);
-                setContactContainer(false);
-                setProjectsContainer(true);
-                setServicesContainer(false);
-                break;
-            case "services":
-                setCurrentPage(page);
-                setInfoContainer(false);
-                setTeamContainer(false);
-                setContactContainer(false);
-                setProjectsContainer(false);
-                setServicesContainer(true);
-                break;
-            default:
-                break;
-        }
-    };
-
     return (
         <nav ref={navRef} className="bg-gray-900 bg-opacity-90 backdrop-blur-sm fixed w-full z-50">
             <div className="px-4">
@@ -109,39 +50,19 @@ function Navbar({ currentPage, setCurrentPage, animationInProgress, setInfoConta
                     </div>
 
                     <div ref={linksRef} className="hidden md:flex space-x-8">
-                        <button
-                            onClick={() => handleNavigation("start")}
-                            className={`text-white hover:text-purple-400 transition-colors ${currentPage === "start" ? "text-purple-400" : ""
-                                }`}
-                        >
+                        <button className="text-white hover:text-purple-400 transition-colors">
                             Home
                         </button>
-                        <button
-                            onClick={() => handleNavigation("team")}
-                            className={`text-white hover:text-purple-400 transition-colors ${currentPage === "team" ? "text-purple-400" : ""
-                                }`}
-                        >
+                        <button className="text-white hover:text-purple-400 transition-colors">
                             Team
                         </button>
-                        <button
-                            onClick={() => handleNavigation("projects")}
-                            className={`text-white hover:text-purple-400 transition-colors ${currentPage === "projects" ? "text-purple-400" : ""
-                                }`}
-                        >
+                        <button className="text-white hover:text-purple-400 transition-colors">
                             Projects
                         </button>
-                        <button
-                            onClick={() => handleNavigation("services")}
-                            className={`text-white hover:text-purple-400 transition-colors ${currentPage === "services" ? "text-purple-400" : ""
-                                }`}
-                        >
+                        <button className="text-white hover:text-purple-400 transition-colors">
                             Services
                         </button>
-                        <button
-                            onClick={() => handleNavigation("contact")}
-                            className={`text-white hover:text-purple-400 transition-colors ${currentPage === "contact" ? "text-purple-400" : ""
-                                }`}
-                        >
+                        <button className="text-white hover:text-purple-400 transition-colors">
                             Contact
                         </button>
                     </div>

@@ -1,16 +1,14 @@
 import logo from "../assets/images/logo2.png";
-import { RefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from 'gsap';
 
-function Info({ restarted, containerOn, logoRef}: {
+function Info({ restarted }: {
     restarted: boolean,
-    containerOn: boolean,
-    logoRef: RefObject<HTMLImageElement | null>,
 }) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const logoRef = useRef<HTMLImageElement | null>(null);
 
     useEffect(() => {
-        if (!containerOn) return;
 
         const animateLogo = () => {
             const t1 = gsap.timeline()
@@ -51,9 +49,7 @@ function Info({ restarted, containerOn, logoRef}: {
         };
 
         animateLogo();
-    }, [containerOn]);
-
-    if (!containerOn) return null;
+    }, []);
 
     return (
         <div ref={containerRef} className="relative min-h-screen py-16 overflow-hidden">

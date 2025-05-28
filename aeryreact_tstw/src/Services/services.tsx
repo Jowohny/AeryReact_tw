@@ -38,21 +38,19 @@ function Services({ servicesRef, serviceItemsRef }: {
     serviceItemsRef: React.RefObject<(HTMLDivElement | null)[]>
 }) {
     useEffect(() => {
-        if (servicesRef.current) {
-            gsap.fromTo(
-                servicesRef.current,
-                {
-                    opacity: 0,
-                    y: 50
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: "power2.out"
-                }
-            );
-        }
+        gsap.fromTo(
+            servicesRef.current,
+            {
+                opacity: 0,
+                y: 50
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power2.out"
+            }
+        );
 
         const items = serviceItemsRef.current;
         if (!items) return;
@@ -68,6 +66,10 @@ function Services({ servicesRef, serviceItemsRef }: {
                     scale: 0.8
                 },
                 {
+                    scrollTrigger: {
+                        trigger: ".random",
+                        toggleActions: "play none none none"
+                    },
                     opacity: 1,
                     x: 0,
                     scale: 1,
@@ -90,7 +92,7 @@ function Services({ servicesRef, serviceItemsRef }: {
                                 serviceItemsRef.current[index] = el;
                             }
                         }}
-                        className="bg-white/15 rounded-2xl shadow-2xl border border-white/20 rounded-lg p-8 shadow-lg"
+                        className="random bg-white/15 rounded-2xl shadow-2xl border border-white/20 rounded-lg p-8 shadow-lg"
                     >
                         <div className="text-4xl mb-4">{service.icon}</div>
                         <h3 className="text-xl font-bold mb-2 text-gray-800 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">{service.title}</h3>

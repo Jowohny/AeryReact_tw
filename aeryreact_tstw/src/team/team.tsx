@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
 
 import sanskar from "../assets/images/sanskar.png";
@@ -7,15 +7,7 @@ import kaelyn from "../assets/images/kaelyn.jpg";
 import johny from "../assets/images/johny.jpg";
 import peng from "../assets/images/peng.jpg";
 
-function Team({
-    containerOn,
-    meetRef,
-    profileRef,
-}: {
-    containerOn: boolean;
-    meetRef: RefObject<HTMLDivElement | null>;
-    profileRef: RefObject<HTMLDivElement | null>;
-}) {
+function Team({ restarted }: { restarted: boolean; }) {
     const teamMembers = [
         {
             name: "Sanskar Thapa",
@@ -47,6 +39,8 @@ function Team({
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
 
+    const meetRef = useRef<HTMLDivElement | null>(null);
+    const profileRef = useRef<HTMLDivElement | null>(null);
     const imageRef = useRef<HTMLImageElement | null>(null);
     const nameRef = useRef<HTMLHeadingElement | null>(null);
     const descriptionRef = useRef<HTMLParagraphElement | null>(null);
@@ -58,7 +52,7 @@ function Team({
 
     useEffect(() => {
         if (meetRef.current && profileRef.current) {
-            if (containerOn) {
+            if (restarted) {
                 gsap.set(meetRef.current, { opacity: 0, x: -120, skewX: -10 });
                 gsap.set(profileRef.current, { opacity: 0, x: 120, scale: 0.8, rotationY: -60 });
 
@@ -69,7 +63,7 @@ function Team({
                 gsap.to([meetRef.current, profileRef.current], { opacity: 0, y: 40, duration: 0.6, ease: "power2.in" });
             }
         }
-    }, [containerOn, meetRef, profileRef]);
+    }, [restarted, meetRef, profileRef]);
 
     const changeProfile = useCallback((newIndex: number) => {
         if (isAnimating || newIndex === currentIndexRef.current) return;
@@ -101,7 +95,7 @@ function Team({
     }, [isAnimating]);
 
     useEffect(() => {
-        if (!imageRef.current || !nameRef.current || !descriptionRef.current || !containerOn) {
+        if (!imageRef.current || !nameRef.current || !descriptionRef.current || !restarted) {
             if (imageRef.current) {
                 gsap.set(imageRef.current, { opacity: 0 });
             }
@@ -130,7 +124,7 @@ function Team({
             opacity: 1, y: 0, scaleX: 1, duration: 0.7, ease: "power2.out",
         }, "-=0.6");
 
-    }, [currentIndex, containerOn]);
+    }, [currentIndex]);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -141,8 +135,6 @@ function Team({
         return () => clearInterval(intervalId);
     }, [changeProfile, teamMembers.length]);
 
-
-    if (!containerOn) return null;
 
     return (
         <div className="h-screen flex ml-8 gap-8 justify-center items-start py-40 overflow-hidden antialiased text-white">

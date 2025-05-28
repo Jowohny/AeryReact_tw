@@ -136,7 +136,7 @@ function Team({
         const intervalId = setInterval(() => {
             const nextIndexToDisplay = (currentIndexRef.current + 1) % teamMembers.length;
             changeProfile(nextIndexToDisplay);
-        }, 5500);
+        }, 3000);
 
         return () => clearInterval(intervalId);
     }, [changeProfile, teamMembers.length]);
@@ -145,12 +145,12 @@ function Team({
     if (!containerOn) return null;
 
     return (
-        <div className="h-screen flex mx-8 gap-8 justify-center items-start py-40 overflow-hidden antialiased text-white">
-            <div ref={meetRef} className="w-full w-2/5 flex-col justify-center content-start px-0 pt-36">
+        <div className="h-screen flex ml-8 gap-8 justify-center items-start py-40 overflow-hidden antialiased text-white">
+            <div ref={meetRef} className="w-full flex-col justify-center content-start pl-32 pt-40">
                 <h1 className="text-4xl text-5xl font-bold mb-6 leading-tight">
                     Meet The Team!
                 </h1>
-                <p className="text-lg text-xl mb-6 opacity-90">
+                <p className="text-lg text-xl opacity-90">
                     Our talented team brings together diverse skills and perspectives to deliver
                     exceptional results. We're passionate about creating innovative solutions and
                     driving success for our clients. We are a group of {teamMembers.length} people gathered by Sanskar
@@ -158,9 +158,9 @@ function Team({
                 </p>
             </div>
 
-            <div ref={profileRef} className="w-full w-2/5 flex justify-center items-center px-4">
+            <div ref={profileRef} className="w-full flex justify-center items-center">
                 <div className="relative w-full max-w-xs max-w-sm max-w-md mx-auto py-8">
-                    <div className="relative w-48 h-48 w-56 h-56 w-64 h-64 mx-auto mb-8">
+                    <div className="relative mb-8">
                         <img
                             ref={imageRef}
                             key={`profile-image-${teamMembers[currentIndex].name}`}

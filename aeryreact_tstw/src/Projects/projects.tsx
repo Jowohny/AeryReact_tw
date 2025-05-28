@@ -79,14 +79,14 @@ function Projects({ projectsRef, projectCardsRef }: {
                         }}
                         className="bg-white/10 border border-white/20 rounded-lg overflow-hidden shadow-lg"
                     >
-                        <div className="relative h-48 overflow-hidden justify-items-center content-center">
+                        <div className="relative h-48 overflow-hidden flex items-center justify-center content-center">
                             <img
                                 src={project.image}
                                 alt={project.title}
                                 className="h-2/3 object-cover"
                             />
                         </div>
-                        <div className="p-6">
+                        <div className="px-6 pb-6">
                             <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">{project.title}</h3>
                             <p className="text-white mb-4">{project.description}</p>
                             <div className="flex flex-wrap gap-2">

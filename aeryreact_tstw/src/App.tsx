@@ -25,6 +25,10 @@ function App() {
           restarted={pageRestarted}
         />
 
+        <Services 
+          restarted={pageRestarted}
+        />
+
       </div>
       <Footer />
     </div>

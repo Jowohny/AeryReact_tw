@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import sanskar from "../assets/images/sanskar.png";
 import joshua from "../assets/images/joshua.jpg";
 import kaelyn from "../assets/images/kaelyn.jpg";
 import johny from "../assets/images/johny.jpg";
 import peng from "../assets/images/peng.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Team({ restarted }: { restarted: boolean; }) {
     const teamMembers = [
@@ -52,18 +55,49 @@ function Team({ restarted }: { restarted: boolean; }) {
 
     useEffect(() => {
         if (meetRef.current && profileRef.current) {
-            if (restarted) {
-                gsap.set(meetRef.current, { opacity: 0, x: -120, skewX: -10 });
-                gsap.set(profileRef.current, { opacity: 0, x: 120, scale: 0.8, rotationY: -60 });
 
-                const tl = gsap.timeline({ defaults: { duration: 1.3, ease: "expo.out" }});
-                tl.to(meetRef.current, { opacity: 1, x: 0, skewX: 0 })
-                  .to(profileRef.current, { opacity: 1, x: 0, scale: 1, rotationY: 0 }, "-=1.0");
-            } else {
-                gsap.to([meetRef.current, profileRef.current], { opacity: 0, y: 40, duration: 0.6, ease: "power2.in" });
+                const tl = gsap.timeline({ 
+                    defaults: {
+                        duration: 1.3, 
+                        ease: "expo.out" 
+                    },
+                    scrollTrigger: {
+                        trigger: meetRef.current,
+                        toggleActions: "play none none none",
+                        start: "top 50%"
+                    }
+                });
+                tl.fromTo(
+                    meetRef.current,
+                    {
+                        opacity: 0,
+                        x: -120,
+                        skewX: -10                    
+                    },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        skewX: 0
+                    }
+                ).fromTo(
+                    profileRef.current,
+                    {
+                        opacity: 0,
+                        x: 120,
+                        scale: 0.8,
+                        rotationY: -60                    
+                    },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        scale: 1,
+                        rotationY: 0
+                    },
+                    "-=1.0"
+                );
             }
-        }
-    }, [restarted, meetRef, profileRef]);
+
+    }, [meetRef, profileRef]);
 
     const changeProfile = useCallback((newIndex: number) => {
         if (isAnimating || newIndex === currentIndexRef.current) return;
@@ -82,15 +116,40 @@ function Team({ restarted }: { restarted: boolean; }) {
             }
         });
 
-        tlOut.to(imageRef.current, {
-            opacity: 0, scale: 0.3, rotationY: 180, y: -30, duration: 0.6, ease: "power3.in",
-        })
-        .to(nameRef.current, {
-            opacity: 0, y: -50, skewX: -15, duration: 0.5, ease: "back.in(1.6)",
-        }, "<0.1")
-        .to(descriptionRef.current, {
-            opacity: 0, y: -40, scaleX: 0.6, filter: "blur(3px)", duration: 0.45, ease: "power2.in",
-        }, "<0.05");
+        tlOut.to(
+            imageRef.current, 
+            {
+                opacity: 0, 
+                scale: 0.3, 
+                rotationY: 180, 
+                y: -30, 
+                duration: 0.6, 
+                ease: "power3.in",
+            }
+        )
+        .to(
+            nameRef.current, 
+            {
+                opacity: 0, 
+                y: -50, 
+                skewX: -15, 
+                duration: 0.5, 
+                ease: "back.in(1.6)",
+            }, 
+            "<0.1"
+        )
+        .to(
+            descriptionRef.current,    
+            {
+                opacity: 0, 
+                y: -40, 
+                scaleX: 0.6, 
+                filter: "blur(3px)", 
+                duration: 0.45, 
+                ease: "power2.in",
+            }, 
+            "<0.05"
+        );
 
     }, [isAnimating]);
 
@@ -137,7 +196,7 @@ function Team({ restarted }: { restarted: boolean; }) {
 
 
     return (
-        <div className="h-screen flex ml-8 gap-8 justify-center items-start py-40 overflow-hidden antialiased text-white">
+        <div className="h-screen flex ml-8 gap-8 justify-center items-start overflow-hidden antialiased text-white">
             <div ref={meetRef} className="w-full flex-col justify-center content-start pl-32 pt-40">
                 <h1 className="text-4xl text-5xl font-bold mb-6 leading-tight">
                     Meet The Team!

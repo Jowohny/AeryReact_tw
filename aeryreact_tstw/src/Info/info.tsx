@@ -59,7 +59,7 @@ function Info({ restarted }: {
                         ref={logoRef}
                         src={logo}
                         alt="aery logo"
-                        className="w-2/5 z-0 drop-shadow-2xl"
+                        className="w-1/2 z-0 drop-shadow-2xl"
                     />
                 </div>
         </div>

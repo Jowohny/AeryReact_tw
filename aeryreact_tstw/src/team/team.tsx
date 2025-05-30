@@ -196,7 +196,7 @@ function Team({ restarted }: { restarted: boolean; }) {
 
 
     return (
-        <div className="h-screen flex ml-8 gap-8 justify-center items-start overflow-hidden antialiased text-white">
+        <div className="h-fit flex ml-8 mb-20 gap-8 justify-center items-start overflow-hidden antialiased text-white">
             <div ref={meetRef} className="w-full flex-col justify-center content-start pl-32 pt-40">
                 <h1 className="text-4xl text-5xl font-bold mb-6 leading-tight">
                     Meet The Team!

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import logo from "../assets/images/logo2.png";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CurrentProjectsHeaderSVG from './CurrentProjects'; 
 
@@ -16,7 +17,7 @@ const projects: Project[] = [
     {
         title: "AeryMail",
         description: "A modern e-commerce platform with real-time inventory management and payment processing.",
-        image: "../src/assets/images/logo2.png",
+        image: logo,
         technologies: ["Executorch", "React Native", "Expo", "Expo Router"]
     }
 ];

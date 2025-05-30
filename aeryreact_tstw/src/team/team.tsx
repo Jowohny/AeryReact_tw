@@ -10,34 +10,43 @@ import peng from "../assets/images/peng.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Team({ restarted }: { restarted: boolean; }) {
-    const teamMembers = [
-        {
-            name: "Sanskar Thapa",
-            image: sanskar,
-            description: "Backend specialist focusing on system architecture and API development."
-        },
-        {
-            name: "Joshua Sorteras",
-            image: joshua,
-            description: "Full-stack developer skilled in both frontend and backend technologies."
-        },
-        {
-            name: "Kaelyn Taing",
-            image: kaelyn,
-            description: "Frontend developer with expertise in React and UI/UX design."
-        },
-        {
-            name: "Johny Vu",
-            image: johny,
-            description: "Webmaster and animator with experience in frontend technologies."
-        },
-        {
-            name: "Peng",
-            image: peng,
-            description: "Marketing and Research"
-        }
-    ];
+
+interface Members {
+    name: string;
+    image: string;
+    description: string;
+}
+
+const teamMembers: Members[] = [
+    {
+        name: "Sanskar Thapa",
+        image: sanskar,
+        description: "Backend specialist focusing on system architecture and API development."
+    },
+    {
+        name: "Joshua Sorteras",
+        image: joshua,
+        description: "Full-stack developer skilled in both frontend and backend technologies."
+    },
+    {
+        name: "Kaelyn Taing",
+        image: kaelyn,
+        description: "Frontend developer with expertise in React and UI/UX design."
+    },
+    {
+        name: "Johny Vu",
+        image: johny,
+        description: "Webmaster and animator with experience in frontend technologies."
+    },
+    {
+        name: "Peng",
+        image: peng,
+        description: "Marketing and Research"
+    }
+];
+
+function Team() {
+
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
@@ -154,7 +163,7 @@ function Team({ restarted }: { restarted: boolean; }) {
     }, [isAnimating]);
 
     useEffect(() => {
-        if (!imageRef.current || !nameRef.current || !descriptionRef.current || !restarted) {
+        if (!imageRef.current || !nameRef.current || !descriptionRef.current) {
             if (imageRef.current) {
                 gsap.set(imageRef.current, { opacity: 0 });
             }

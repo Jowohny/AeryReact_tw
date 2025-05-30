@@ -29,6 +29,10 @@ function App() {
           restarted={pageRestarted}
         />
 
+        <Projects />
+        
+        <Contact />
+
       </div>
       <Footer />
     </div>

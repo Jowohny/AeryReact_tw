@@ -34,7 +34,7 @@ const services: Service[] = [
     },
 ];
 
-function Services({ restarted }: { restarted: boolean; }) {
+function Services() {
     const servicesSectionRef = useRef<HTMLDivElement | null>(null);
     const svgHeaderRef = useRef<SVGSVGElement | null>(null);
     const serviceItemsRef = useRef<(HTMLDivElement | null)[]>([]); 
@@ -68,7 +68,7 @@ function Services({ restarted }: { restarted: boolean; }) {
 
             ScrollTrigger.create({
                 trigger: sectionContainer,
-                start: "top 60%",
+                start: "top 40%",
                 onEnter: () => {
                     const tl = gsap.timeline({
                         defaults: { ease: "power2.out" }
@@ -195,7 +195,7 @@ function Services({ restarted }: { restarted: boolean; }) {
                 once: true,
             });
    
-    }, [restarted]); 
+    }, []); 
 
     return (
         <div ref={servicesSectionRef} className="min-h-screen">

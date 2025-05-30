@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect , useRef} from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import CurrentProjectsHeaderSVG from './CurrentProjects';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,10 +21,11 @@ const projects: Project[] = [
     }
 ];
 
-function Projects({ projectsRef, projectCardsRef }: {
-    projectsRef: React.RefObject<HTMLDivElement | null>,
-    projectCardsRef: React.RefObject<(HTMLDivElement | null)[]>
-}) {
+function Projects() {
+    const projectCardsRef = useRef<(HTMLDivElement | null)[]>([]);
+    const projectsRef = useRef<HTMLDivElement | null>(null);
+    const svgHeaderRef = useRef<SVGSVGElement | null>(null);
+
     useEffect(() => {
         if (projectsRef.current) {
             gsap.fromTo(
@@ -68,7 +70,8 @@ function Projects({ projectsRef, projectCardsRef }: {
 
     return (
         <div ref={projectsRef} className="min-h-screen py-40">
-            <div className="grid grid-cols-3 gap-8">
+            <CurrentProjectsHeaderSVG ref={svgHeaderRef}/>
+            <div className="flex justify-center gap-8">
                 {projects.map((project, index) => (
                     <div
                         key={project.title}
@@ -77,7 +80,7 @@ function Projects({ projectsRef, projectCardsRef }: {
                                 projectCardsRef.current[index] = el;
                             }
                         }}
-                        className="bg-white/10 border border-white/20 rounded-lg overflow-hidden shadow-lg"
+                        className="w-1/3 bg-white/10 border border-white/20 rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-purple-400/30"
                     >
                         <div className="relative h-48 overflow-hidden flex items-center justify-center content-center">
                             <img

@@ -46,7 +46,6 @@ function Services() {
             const cardsContainerElement = serviceCardsContainerRef.current;
             const currentServiceItems = serviceItemsRef.current.filter(el => el !== null);
 
-
             if (!svgElement || !cardsContainerElement || currentServiceItems.length === 0) return;
 
             const svgOurText = svgElement.querySelector('#text-our');
@@ -57,8 +56,7 @@ function Services() {
             gsap.set([svgElement, svgOurText, ...svgServiceChars, svgUnderline, ...svgDecor, cardsContainerElement, ...currentServiceItems].filter(Boolean), { autoAlpha: 0 });
 
             if (svgUnderline) {
-                const underlineLength = svgUnderline.getTotalLength ? svgUnderline.getTotalLength() : 400;
-                gsap.set(svgUnderline, { strokeDasharray: underlineLength+50, strokeDashoffset: underlineLength+50});
+                gsap.set(svgUnderline, { strokeDasharray: 425, strokeDashoffset: 425});
             }
             gsap.set(cardsContainerElement, { y: 50 });
             gsap.set(currentServiceItems, {
@@ -104,7 +102,7 @@ function Services() {
                             autoAlpha: 1, 
                             y: 0, 
                             duration: 0.1, 
-                            stagger: 0.08
+                            stagger: 0.06
                         }, 
                         "-=0.4"
                     ).fromTo(

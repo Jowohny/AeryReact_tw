@@ -5,13 +5,17 @@ import Contact from './components/Contact';
 import Projects from "./Projects/projects";
 import Services from "./Services/services";
 import Footer from "./Footer/footer";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 
 function App() {
   const [pageRestarted, setPageRestarted] = useState(true);
 
   const appContainerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    setPageRestarted(true); //only here for vercel bs
+  })
 
 
   return (
@@ -21,13 +25,9 @@ function App() {
         restarted={pageRestarted}
       />
       <div className="container mx-auto">
-        <Team
-          restarted={pageRestarted}
-        />
+        <Team />
 
-        <Services 
-          restarted={pageRestarted}
-        />
+        <Services />
 
         <Projects />
         

@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import birb2 from "../assets/images/logo2.png";
 import birb1 from "../assets/images/logo.png";
 
-const OurServicesHeaderSVG = forwardRef<SVGSVGElement>((props, ref) => (
+const OurServicesHeaderSVG = forwardRef<SVGSVGElement>((_props, ref) => (
   <svg
     ref={ref}
     width="100%"
@@ -20,7 +20,7 @@ const OurServicesHeaderSVG = forwardRef<SVGSVGElement>((props, ref) => (
     <defs>
       <linearGradient id="serviceTextGradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" style={{ stopColor: '#8A2BE2', stopOpacity: 1 }} />
-        <stop offset="50%" style={{ stopColor: '#FF00FF', stopOpacity: 1 }} />
+        <stop offset="20%" style={{ stopColor: '#FF00FF', stopOpacity: 1 }} />
         <stop offset="100%" style={{ stopColor: '#FF69B4', stopOpacity: 1 }} />
       </linearGradient>
       <linearGradient id="underlineGradient" x1="0%" y1="0%" x2="100%" y2="0%">

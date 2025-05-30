@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import birb2 from "../assets/images/logo2.png";
 import birb1 from "../assets/images/logo.png";
 
-const currentProjectsHeaderSVG = forwardRef<SVGSVGElement>((props, ref) => (
+const currentProjectsHeaderSVG = forwardRef<SVGSVGElement>((_props, ref) => (
   <svg
     ref={ref}
     width="100%"
@@ -20,12 +20,12 @@ const currentProjectsHeaderSVG = forwardRef<SVGSVGElement>((props, ref) => (
     <defs>
       <linearGradient id="serviceTextGradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" style={{ stopColor: '#FF69B4', stopOpacity: 0.8 }} />
-        <stop offset="50%" style={{ stopColor: '#FF00FF', stopOpacity: 0.8 }} />
+        <stop offset="20%" style={{ stopColor: '#FF00FF', stopOpacity: 0.8 }} />
         <stop offset="100%" style={{ stopColor: '#8A2BE2', stopOpacity: 0.8 }} />
       </linearGradient>
       <linearGradient id="underlineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" style={{ stopColor: '#8A2BE2', stopOpacity: 1 }} />
-        <stop offset="50%" style={{ stopColor: '#FF00FF', stopOpacity: 1 }} />
+        <stop offset="90%" style={{ stopColor: '#FF00FF', stopOpacity: 1 }} />
         <stop offset="100%" style={{ stopColor: '#FF69B4', stopOpacity: 1 }} />
       </linearGradient>
       <filter id="textGlow" width="300%" height="300%">
@@ -91,7 +91,7 @@ const currentProjectsHeaderSVG = forwardRef<SVGSVGElement>((props, ref) => (
     
     <path
       id="title-underline"
-      d="M150 200 Q350 240 550 200"
+      d="M120 200 Q350 240 580 200"
       stroke="url(#underlineGradient)"
       strokeWidth="6"
       strokeLinecap="round"

@@ -98,10 +98,10 @@ function Projects() {
                     { 
                         strokeDashoffset: 0, 
                         autoAlpha: 1, 
-                        duration: 1, 
+                        duration: 1.5, 
                         ease: "power1.inOut"
                     }, 
-                    "-=0.5"
+                    "-=0.2"
                 ).to(
                     svgDecor,
                     {
@@ -161,8 +161,8 @@ function Projects() {
                     y: 0,
                     scale: 1,
                     duration: 0.6,
-                    ease: "elastic.out(1, 0.5)", 
-                    stagger: 0.15,
+                    ease: "power2.out", 
+                    stagger: 0.25,
                 },
                     "-=0.2"
                 );

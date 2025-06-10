@@ -24,7 +24,7 @@ const projects: Project[] = [
 
 interface ProjectsProps {}
 
-const Projects = forwardRef<HTMLDivElement, ProjectsProps>((props, ref) => {
+const Projects = forwardRef<HTMLDivElement, ProjectsProps>((_props, ref) => {
     const svgHeaderRef = useRef<SVGSVGElement | null>(null);
     const projectItemsRef = useRef<(HTMLDivElement | null)[]>([]);
     const projectCardsContainerRef = useRef<HTMLDivElement | null>(null);

@@ -36,7 +36,7 @@ const services: Service[] = [
 
 interface ServicesProps {}
 
-const Services = forwardRef<HTMLDivElement, ServicesProps>((props, ref) => {
+const Services = forwardRef<HTMLDivElement, ServicesProps>((_props, ref) => {
     const svgHeaderRef = useRef<SVGSVGElement | null>(null);
     const serviceItemsRef = useRef<(HTMLDivElement | null)[]>([]); 
     const serviceCardsContainerRef = useRef<HTMLDivElement | null>(null);

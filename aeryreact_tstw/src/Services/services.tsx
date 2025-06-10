@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OurServicesHeaderSVG from './OurServices';
@@ -34,14 +34,15 @@ const services: Service[] = [
     },
 ];
 
-function Services() {
-    const servicesSectionRef = useRef<HTMLDivElement | null>(null);
+interface ServicesProps {}
+
+const Services = forwardRef<HTMLDivElement, ServicesProps>((props, ref) => {
     const svgHeaderRef = useRef<SVGSVGElement | null>(null);
     const serviceItemsRef = useRef<(HTMLDivElement | null)[]>([]); 
     const serviceCardsContainerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-            const sectionContainer = servicesSectionRef.current!;
+            const sectionContainer = (ref as React.RefObject<HTMLDivElement>)?.current;
             const svgElement = svgHeaderRef.current;
             const cardsContainerElement = serviceCardsContainerRef.current;
             const currentServiceItems = serviceItemsRef.current.filter(el => el !== null);
@@ -53,17 +54,12 @@ function Services() {
             const svgUnderline = svgElement.querySelector('#title-underline') as SVGPathElement
             const svgDecor = gsap.utils.toArray<SVGElement>(svgElement.querySelectorAll('.birb'));
 
-            gsap.set([svgElement, svgOurText, ...svgServiceChars, svgUnderline, ...svgDecor, cardsContainerElement, ...currentServiceItems].filter(Boolean), { autoAlpha: 0 });
+            gsap.set([svgElement, svgOurText, ...svgServiceChars, svgUnderline, ...svgDecor, cardsContainerElement, ...currentServiceItems].filter(Boolean), { autoAlpha: 0, y: 0 });
 
             if (svgUnderline) {
                 gsap.set(svgUnderline, { strokeDasharray: 425, strokeDashoffset: 425});
             }
-            gsap.set(cardsContainerElement, { y: 50 });
-            gsap.set(currentServiceItems, {
-                x: (index) => (index % 2 === 0 ? -50 : 50),
-                scale: 0.8
-            });
-
+            
             ScrollTrigger.create({
                 trigger: sectionContainer,
                 start: "top 40%",
@@ -193,10 +189,10 @@ function Services() {
                 once: true,
             });
    
-    }, []); 
+    }, [ref]); 
 
     return (
-        <div ref={servicesSectionRef} className="min-h-screen">
+        <div ref={ ref } className="min-h-screen pt-20">
             <OurServicesHeaderSVG ref={svgHeaderRef} />
             <div ref={serviceCardsContainerRef} className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -217,6 +213,6 @@ function Services() {
             </div>
         </div>
     );
-}
+});
 
 export default Services;

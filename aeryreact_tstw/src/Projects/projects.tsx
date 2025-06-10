@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import logo from "../assets/images/logo2.png";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -22,14 +22,15 @@ const projects: Project[] = [
     }
 ];
 
-function Projects() {
-    const projectsSectionRef = useRef<HTMLDivElement | null>(null);
+interface ProjectsProps {}
+
+const Projects = forwardRef<HTMLDivElement, ProjectsProps>((props, ref) => {
     const svgHeaderRef = useRef<SVGSVGElement | null>(null);
     const projectItemsRef = useRef<(HTMLDivElement | null)[]>([]);
     const projectCardsContainerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        const sectionContainer = projectsSectionRef.current;
+        const sectionContainer = (ref as React.RefObject<HTMLDivElement>)?.current;
         const svgElement = svgHeaderRef.current;
         const cardsContainerElement = projectCardsContainerRef.current;
         const currentProjectItems = projectItemsRef.current.filter(el => el !== null);
@@ -41,7 +42,7 @@ function Projects() {
         const svgUnderline = svgElement.querySelector('#title-underline') as SVGPathElement;
         const svgDecor = gsap.utils.toArray<SVGElement>(svgElement.querySelectorAll('.birb'));
 
-        gsap.set([svgElement, svgCurrentText, ...svgProjectChars, svgUnderline, ...svgDecor, cardsContainerElement, ...currentProjectItems].filter(Boolean), { autoAlpha: 0 });
+        gsap.set([svgElement, svgCurrentText, ...svgProjectChars, svgUnderline, ...svgDecor, cardsContainerElement, ...currentProjectItems].filter(Boolean), { autoAlpha: 0, y:0 });
 
         if (svgUnderline) {
             gsap.set(svgUnderline, { strokeDasharray: 465, strokeDashoffset: 465});
@@ -66,42 +67,29 @@ function Projects() {
                         autoAlpha: 1,
                         duration: 0.2
                     }
-                ).fromTo(
+                ).to(
                     svgCurrentText,
                     { 
-                        autoAlpha: 0, 
-                        y: -30 },
-                    { 
                         autoAlpha: 1, 
-                        y: 0, 
                         duration: 0.6 
                     },
                     "-=0.1"
-                ).fromTo(
+                ).to(
                     svgProjectChars,
                     { 
-                        autoAlpha: 0, 
-                        y: 50 
-                    },
-                    { 
                         autoAlpha: 1,
-                        y: 0, 
                         duration: 0.1, 
                         stagger: 0.06 
                     },
                     "-=0.4"
-                ).fromTo(
-                    svgUnderline, 
-                    {
-                        autoAlpha: 0
-                    },
+                ).to(
+                    svgUnderline,
                     { 
                         strokeDashoffset: 0, 
                         autoAlpha: 1, 
                         duration: 1.5, 
                         ease: "power1.inOut"
-                    }, 
-                    "-=0.2"
+                    }
                 ).to(
                     svgDecor,
                     {
@@ -148,14 +136,21 @@ function Projects() {
                         }
                     },
                     "-=1.5"
-                ).fromTo(
+                ).to(
                 cardsContainerElement,
-                { autoAlpha: 0, y: 50 },
-                { autoAlpha: 1, y: 0, duration: 0.3 },
-                (svgDecor.length > 0) ? "-=0.3" : "-=0.5"
+                { 
+                    autoAlpha: 1,  
+                    y: 0, 
+                    duration: 0.3 
+                },
+                "-=0.5"
             ).fromTo(
                 currentProjectItems,
-                { autoAlpha: 0, y: 50, scale: 0.8 },
+                { 
+                    autoAlpha: 0, 
+                    y: 50, 
+                    scale: 0.8 
+                },
                 {
                     autoAlpha: 1,
                     y: 0,
@@ -172,7 +167,7 @@ function Projects() {
     }, []);
 
     return (
-        <div ref={projectsSectionRef} className="min-h-screen"> 
+        <div ref={ref} className="min-h-screen pt-20"> 
             <CurrentProjectsHeaderSVG ref={svgHeaderRef} />
             <div ref={projectCardsContainerRef} className="container mx-auto px-4"> 
                 <div className="flex flex-wrap justify-center gap-8"> 
@@ -211,6 +206,6 @@ function Projects() {
             </div>
         </div>
     );
-}
+});
 
 export default Projects;

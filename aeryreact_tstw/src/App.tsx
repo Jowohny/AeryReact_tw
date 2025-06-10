@@ -17,21 +17,32 @@ function App() {
     setPageRestarted(true); //only here for vercel bs
   })
 
+  //container references for smooth scroll
+  const teamRef = useRef<HTMLDivElement | null>(null);
+  const servicesRef = useRef<HTMLDivElement | null>(null);
+  const projectsRef = useRef<HTMLDivElement | null>(null);
+  const contactRef = useRef<HTMLDivElement | null>(null);
+
 
   return (
     <div ref={appContainerRef} className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <Navbar />
+      <Navbar 
+        teamRef={teamRef}
+        servicesRef={servicesRef}
+        projectsRef={projectsRef}
+        contactRef={contactRef}
+      />
       <Info
         restarted={pageRestarted}
       />
       <div className="container mx-auto">
-        <Team />
+        <Team teamRef={teamRef} />
 
-        <Services />
+        <Services ref={servicesRef} />
 
-        <Projects />
+        <Projects ref={projectsRef} />
         
-        <Contact />
+        <Contact contactRef={contactRef} />
 
       </div>
       <Footer />

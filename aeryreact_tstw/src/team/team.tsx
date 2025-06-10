@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -45,7 +45,7 @@ const teamMembers: Members[] = [
     }
 ];
 
-function Team() {
+function Team({ teamRef } : { teamRef:RefObject<HTMLDivElement | null> }) {
 
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -205,7 +205,7 @@ function Team() {
 
 
     return (
-        <div className="h-fit flex ml-8 mb-20 gap-8 justify-center items-start overflow-hidden antialiased text-white">
+        <div ref={ teamRef } className="h-fit flex ml-8 mb-20 gap-8 justify-center items-start overflow-hidden antialiased text-white pt-40">
             <div ref={meetRef} className="w-full flex-col justify-center content-start pl-32 pt-40">
                 <h1 className="text-4xl text-5xl font-bold mb-6 leading-tight">
                     Meet The Team!

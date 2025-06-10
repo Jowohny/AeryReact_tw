@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const Contact = () => {
+function Contact({contactRef} : { contactRef:RefObject<HTMLDivElement | null>}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const introTextRef = useRef<HTMLParagraphElement>(null);
@@ -57,10 +57,10 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 text-white overflow-hidden">
+    <div ref={contactRef} className="flex items-center justify-center min-h-screen p-4 text-white overflow-hidden">
       <div 
         ref={containerRef} 
-        className="w-full max-w-2xl p-8 space-y-10 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20">
+        className="w-full max-w-2xl p-8 space-y-10 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 ">
         <h1 
           ref={titleRef} 
           className="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 py-2"

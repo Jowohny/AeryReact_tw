@@ -57,6 +57,8 @@ const Projects = forwardRef<HTMLDivElement, ProjectsProps>((_props, ref) => {
         ScrollTrigger.create({
             trigger: sectionContainer,
             start: "top 60%",
+            end: "bottom 0%",
+            toggleActions: "play pause resume reset",
             onEnter: () => {
                 const tl = gsap.timeline({
                     defaults: { ease: "power2.out" }
@@ -96,44 +98,7 @@ const Projects = forwardRef<HTMLDivElement, ProjectsProps>((_props, ref) => {
                         autoAlpha: 0.3, 
                         duration: 1,
                         stagger: 0.1,
-                        ease: "sine.inOut",
-                        onComplete: () => {
-                            let index = 0;
-                            svgDecor.forEach((element) => {
-                                const t1 = gsap.timeline();
-                                if(index == 0 || index == 1) { 
-                                    t1.to(
-                                        element,
-                                        {   
-                                            y: 10,
-                                            rotation: 185,
-                                            transformOrigin: "center",
-                                            duration: 1.4,
-                                            ease: "sine.inOut",
-                                            yoyo: true, 
-                                            repeat: -1,
-                                            delay: index*0.2
-                                        }
-                                    );
-                                } else {
-                                    t1.to(
-                                        element,
-                                        {    
-                                            y: 10,
-                                            rotation: -5,
-                                            transformOrigin: "center",
-                                            duration: 1.4,
-                                            ease: "sine.inOut",
-                                            yoyo: true, 
-                                            repeat: -1,
-                                            delay: index*0.2
-                                        }
-                                    );
-                                }
-
-                                index += 1;
-                            });
-                        }
+                        ease: "sine.inOut"
                     },
                     "-=1.5"
                 ).to(

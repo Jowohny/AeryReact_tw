@@ -48,7 +48,7 @@ const currentProjectsHeaderSVG = forwardRef<SVGSVGElement>((_props, ref) => (
       </filter>
     </defs>
     <g id="decorative-elements" filter="url(#imgGlow)">
-      <image className="birb" width="45" height="45" x="-600" y="50" href={birb2} style={{ opacity: 0.6}} transform="scale(-1, 1)"/>
+    <image className="birb" width="45" height="45" x="-600" y="50" href={birb2} style={{ opacity: 0.6}} transform="scale(-1, 1)"/>
       <image className="birb" width="80" height="80" x="-680" y="130" href={birb1} style={{ opacity: 0.4 }}  transform="scale(-1, 1)"/>
       <image className="birb" width="80" height="80" x="20" y="130" href={birb2} style={{ opacity: 0.6 }}/>
       <image className="birb" width="45" height="45" x="100" y="50" href={birb1} style={{ opacity: 0.4  }}/>

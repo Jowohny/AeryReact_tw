@@ -1,7 +1,10 @@
 import logo from "../assets/images/logo2.png";
 import { useEffect, useRef } from "react";
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import InfoSVG from "./InfoSVG";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Info({ restarted }: {
     restarted: boolean,
@@ -12,9 +15,16 @@ function Info({ restarted }: {
     const svgTextSpanRefs = useRef<(SVGTSpanElement | null)[]>([]);
 
     useEffect(() => {
+        if (!containerRef.current) return;
 
         const animateLogo = () => {
-            const t1 = gsap.timeline()
+            const t1 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: logoRef.current,
+                    start: "top bottom",
+                    toggleActions: "play pause resume reverse"
+                }
+            });
 
             if (!logoRef.current) return;
 
@@ -28,36 +38,32 @@ function Info({ restarted }: {
                     duration: 1
                 }
             ).to(
-                logoRef.current, 
+                logoRef.current,
                 {
-                    y: -20,
-                    rotation: 5,
-                    duration: 2,
+                y: 20,
+                    rotation: -5,
+                    duration: 1.2,
                     ease: "sine.inOut",
                     repeat: -1,
                     yoyo: true
                 },
                 "-=1"
-           ).to(
-                logoRef.current, 
-                {
-                y: 20,
-                    rotation: -5,
-                    duration: 2,
-                    ease: "sine.inOut",
-                    repeat: -1,
-                    yoyo: true
-                }
             );
         };
 
         const animateSVGText = () => {
-            const t1 = gsap.timeline()
+            const t1 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: svgTextRef.current,
+                    start: "top bottom",
+                    toggleActions: "play pause resume none"
+                }
+            });
             
             if (!svgTextSpanRefs.current.length) return;
             gsap.set(svgTextSpanRefs.current, { opacity: 0});
             t1.to(
-                svgTextSpanRefs.current, 
+                svgTextSpanRefs.current,
                 {
                     opacity: 1,
                     y: 0,
@@ -65,16 +71,6 @@ function Info({ restarted }: {
                     ease: "power3.out",
                     stagger: 0.08,
                     delay: 1
-                }
-            ).to(
-                svgTextSpanRefs.current, 
-                {
-                    y: 30,
-                    ease: "power1.inOut",
-                    duration: 0.7,
-                    stagger: 0.08,
-                    yoyo: true,
-                    repeat: -1
                 }
             );
         };

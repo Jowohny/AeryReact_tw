@@ -72,7 +72,7 @@ function Team({ teamRef } : { teamRef:RefObject<HTMLDivElement | null> }) {
                     },
                     scrollTrigger: {
                         trigger: meetRef.current,
-                        toggleActions: "play none none none",
+                        toggleActions: "play pause resume none",
                         start: "top 50%"
                     }
                 });
@@ -205,7 +205,7 @@ function Team({ teamRef } : { teamRef:RefObject<HTMLDivElement | null> }) {
 
 
     return (
-        <div ref={ teamRef } className="h-fit flex ml-8 mb-20 gap-8 justify-center items-start overflow-hidden antialiased text-white pt-40">
+        <div ref={ teamRef } className="h-fit flex ml-8 mb-60 gap-8 justify-center items-start overflow-hidden antialiased text-white pt-40">
             <div ref={meetRef} className="w-full flex-col justify-center content-start pl-32 pt-40">
                 <h1 className="text-4xl text-5xl font-bold mb-6 leading-tight">
                     Meet The Team!
@@ -226,7 +226,7 @@ function Team({ teamRef } : { teamRef:RefObject<HTMLDivElement | null> }) {
                             key={`profile-image-${teamMembers[currentIndex].name}`}
                             src={teamMembers[currentIndex].image}
                             alt={`${teamMembers[currentIndex].name} profile`}
-                            className="h-full w-full object-cover rounded-full shadow-2xl border-4 border-transparent bg-clip-border bg-gradient-to-t from-blue-400 to-pink-500"
+                            className="h-full w-full object-cover rounded-full shadow-2xl border-4"
                         />
                     </div>
 

@@ -1,4 +1,4 @@
-import { LabelHTMLAttributes, RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap';
 
@@ -18,6 +18,10 @@ function Contact({contactRef} : { contactRef:RefObject<HTMLDivElement | null>}) 
   const [message, setMessage] = useState('');
 
   useEffect(() => {
+
+    if(name && email && message) {
+      //vercel deployment fix
+    }
 
     if(containerRef.current) {
       const labels = gsap.utils.toArray<HTMLLabelElement>(containerRef.current?.querySelectorAll('.fish'));

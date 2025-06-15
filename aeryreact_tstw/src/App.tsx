@@ -5,7 +5,6 @@ import Contact from './components/Contact';
 import Projects from "./Projects/projects";
 import Services from "./Services/services";
 import Footer from "./Footer/footer";
-import ppNavbar from "./privacypolicy/ppnavbar"
 import { useState, useRef, useEffect } from "react";
 
 

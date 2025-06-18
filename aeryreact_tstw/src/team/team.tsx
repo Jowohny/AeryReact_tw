@@ -205,12 +205,12 @@ function Team({ teamRef } : { teamRef:RefObject<HTMLDivElement | null> }) {
 
 
     return (
-        <div ref={ teamRef } className="h-fit flex ml-8 mb-60 gap-8 justify-center items-start overflow-hidden antialiased text-white pt-40">
-            <div ref={meetRef} className="w-full flex-col justify-center content-start pl-32 pt-40">
-                <h1 className="text-4xl text-5xl font-bold mb-6 leading-tight">
+        <div ref={ teamRef } className="h-fit flex flex-col lg:flex-row ml-4 md:ml-8 mb-10 md:mb-20 gap-4 md:gap-8 justify-center items-center lg:items-start overflow-hidden antialiased text-white pt-20 md:pt-40 px-4 md:px-8">
+            <div ref={meetRef} className="w-full lg:w-1/2 flex-col justify-center content-start lg:pl-8 xl:pl-32 pt-10 lg:pt-40 text-center lg:text-left">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
                     Meet The Team!
                 </h1>
-                <p className="text-lg text-xl opacity-90">
+                <p className="text-base md:text-lg lg:text-xl leading-relaxed">
                     Our talented team brings together diverse skills and perspectives to deliver
                     exceptional results. We're passionate about creating innovative solutions and
                     driving success for our clients. We are a group of {teamMembers.length} people gathered by Sanskar
@@ -218,33 +218,33 @@ function Team({ teamRef } : { teamRef:RefObject<HTMLDivElement | null> }) {
                 </p>
             </div>
 
-            <div ref={profileRef} className="w-full flex justify-center items-center">
-                <div className="relative w-full max-w-xs max-w-sm max-w-md mx-auto py-8">
-                    <div className="relative mb-8">
+            <div ref={profileRef} className="w-full lg:w-1/2 flex justify-center items-center">
+                <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto py-4 md:py-8 h-fit">
+                    <div className="relative mb-6">
                         <img
                             ref={imageRef}
                             key={`profile-image-${teamMembers[currentIndex].name}`}
                             src={teamMembers[currentIndex].image}
                             alt={`${teamMembers[currentIndex].name} profile`}
-                            className="h-full w-full object-cover rounded-full shadow-2xl border-4"
+                            className="h-48 w-48 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-72 lg:w-72 object-cover rounded-full shadow-2xl border-4 mx-auto"
                         />
                     </div>
 
-                    <div className="text-center min-h-[8rem] min-h-[8.5rem] px-2"> 
-                        <h2 ref={nameRef} key={`profile-name-${teamMembers[currentIndex].name}`} className="text-2xl text-3xl font-bold mb-3">
+                    <div className="text-center min-h-[6rem] sm:min-h-[7rem] md:min-h-[8rem] lg:min-h-[8.5rem] px-2"> 
+                        <h2 ref={nameRef} key={`profile-name-${teamMembers[currentIndex].name}`} className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-3">
                             {teamMembers[currentIndex].name}
                         </h2>
-                        <p ref={descriptionRef} key={`profile-desc-${teamMembers[currentIndex].name}`} className="text-sm text-base text-gray-300 leading-relaxed opacity-90">
+                        <p ref={descriptionRef} key={`profile-desc-${teamMembers[currentIndex].name}`} className="text-sm md:text-base text-gray-300 leading-relaxed opacity-90 px-2">
                             {teamMembers[currentIndex].description}
                         </p>
                     </div>
 
-                    <div className="flex justify-center mt-8 gap-3">
+                    <div className="flex justify-center mt-6 md:mt-8 gap-2 md:gap-3">
                         {teamMembers.map((_, index) => (
                             <button
                                 key={index}
                                 aria-label={`View profile of ${teamMembers[index].name}`}
-                                className={`h-3.5 w-3.5 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-sky-400
+                                className={`h-3 w-3 md:h-3.5 md:w-3.5 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-sky-400
                                     ${currentIndex === index ? 'bg-sky-500 scale-125 shadow-lg' : 'bg-slate-500 hover:bg-sky-400 transform hover:scale-110'}`}
                                 onClick={() => changeProfile(index)}
                                 disabled={isAnimating && currentIndex !== index}

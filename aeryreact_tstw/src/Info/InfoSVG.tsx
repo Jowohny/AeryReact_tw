@@ -13,7 +13,7 @@ const InfoSVG = React.forwardRef<SVGTextPathElement, InfoSVGProps>(({ svgTextSpa
     viewBox="0 0 800 80"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="w-full md:w-3/4 mb-2"
+    className="w-full lg:w-3/4 w-full"
   >
     <defs>
       <linearGradient id="aeryTextGradient" x1="0%" y1="0%" x2="100%" y2="0%">

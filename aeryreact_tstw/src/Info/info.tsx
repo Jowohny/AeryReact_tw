@@ -80,7 +80,7 @@ function Info({ restarted }: {
     }, []);
 
     return (
-        <div ref={containerRef} className="relative min-h-screen py-16 overflow-hidden">
+        <div ref={containerRef} className="relative min-h-screen pt-16 md:pb-16 overflow-hidden">
  
                 <div className={`flex relative z-10 content-start justify-center ${restarted ? "fade-in" : ""}`}>
                     <div className="flex flex-col items-center relative z-10 content-start justify-center">
@@ -89,7 +89,7 @@ function Info({ restarted }: {
                             ref={logoRef}
                             src={logo}
                             alt="aery logo"
-                            className="w-2/5 z-0 drop-shadow-2xl"
+                            className="lg:w-2/5 w-3/5 z-0 drop-shadow-2xl"
                         />
                     </div>
                 </div>

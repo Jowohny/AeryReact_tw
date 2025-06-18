@@ -7,7 +7,7 @@ function PolicyPrivacy() {
         <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
           {ppNavbar()}
 
-          <div className="mx-72">
+          <div className="xl::mx-72 lg:mx-40 md:mx-20 sm:mx-12 mx-4">
             <p className="text-white text-lg pt-24">
               This Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information when you use the service and tells You about 
               Your privacy rights and how the law protects you.<br/><br/>
@@ -39,7 +39,7 @@ function PolicyPrivacy() {
               <h2 className="text-white text-4xl leading-loose font-semibold">Types of Data Collected</h2>
                 <h3 className="text-white text-3xl leading-normal font-medium">Personal Data</h3>
                   <p className="text-white text-lg leading-loose">While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
-                  <ul className="pl-12 text-white leading-relaxed list-disc">
+                  <ul className="pl-12 text-lg text-white leading-relaxed list-disc">
                     <li>Email Adress</li>
                     <li>Usage Data<br/><br/></li>
                   </ul>
@@ -66,7 +66,7 @@ function PolicyPrivacy() {
                   <li><strong>For business transfers:</strong> We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.</li>
                   <li><strong>For other purposes:</strong> We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.<br/><br className="leading-snug"/></li>
                 </ul>
-                <p className="text-white lext-lg leading-loose">We may share Your personal information in the following situations:</p>
+                <p className="text-white text-lg leading-loose">We may share Your personal information in the following situations:</p>
                 <ul className="pl-12 text-white leading-relaxed list-disc text-lg">
                   <li><strong>With Service Providers:</strong> We may share Your personal information with Service Providers to monitor and analyze the use of our Service, to contact You.</li>
                   <li><strong>For business transfers:</strong> We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.</li>

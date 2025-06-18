@@ -111,7 +111,7 @@ function Contact({contactRef} : { contactRef:RefObject<HTMLDivElement | null>}) 
   }, []);
 
   return (
-    <div ref={contactRef} className="flex items-center justify-center min-h-screen p-4 text-white overflow-hidden">
+    <div ref={contactRef} className="flex items-center justify-center min-h-screen p-4 text-white overflow-hidden mt-40">
       <div 
         ref={containerRef} 
         className="w-full max-w-2xl p-8 space-y-10 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 ">

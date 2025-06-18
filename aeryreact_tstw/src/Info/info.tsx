@@ -35,19 +35,19 @@ function Info({ restarted }: {
                 },
                 {
                     opacity: 1,
-                    duration: 1
+                    duration: 0.8
                 }
             ).to(
                 logoRef.current,
                 {
-                y: 20,
-                    rotation: -5,
-                    duration: 1.2,
+                y: 15,
+                    rotation: -3,
+                    duration: 1.0,
                     ease: "sine.inOut",
                     repeat: -1,
                     yoyo: true
                 },
-                "-=1"
+                "-=0.8"
             );
         };
 
@@ -67,10 +67,10 @@ function Info({ restarted }: {
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 1.1,
-                    ease: "power3.out",
-                    stagger: 0.08,
-                    delay: 1
+                    duration: 0.8,
+                    ease: "power2.out",
+                    stagger: 0.06,
+                    delay: 0.5
                 }
             );
         };

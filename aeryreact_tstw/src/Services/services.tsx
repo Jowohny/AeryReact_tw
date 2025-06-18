@@ -82,27 +82,27 @@ const Services = forwardRef<HTMLDivElement, ServicesProps>((_props, ref) => {
                         svgOurText, 
                         {
                             autoAlpha: 0,
-                            y: -30
+                            y: -20
                         },
                         { 
                             autoAlpha: 1, 
                             y: 0, 
-                            duration: 0.6
+                            duration: 0.4
                         },
                         "-=0.1"
                     ).fromTo(
                         svgServiceChars, 
                         {
                             autoAlpha: 0,
-                            y: 50
+                            y: 30
                         },
                         { 
                             autoAlpha: 1, 
                             y: 0, 
-                            duration: 0.1, 
-                            stagger: 0.06
+                            duration: 0.2, 
+                            stagger: 0.08
                         }, 
-                        "-=0.4"
+                        "-=0.3"
                     ).fromTo(
                         svgUnderline, 
                         {
@@ -111,19 +111,19 @@ const Services = forwardRef<HTMLDivElement, ServicesProps>((_props, ref) => {
                         { 
                             strokeDashoffset: 0, 
                             autoAlpha: 1, 
-                            duration: 1, 
+                            duration: 0.8, 
                             ease: "power1.inOut"
                         }, 
-                        "-=0.5"
+                        "-=0.4"
                     ).to(
                         svgDecor, 
                         { 
                             autoAlpha: 0.3,
-                            duration: 1, 
-                            stagger: 0.1, 
+                            duration: 0.6, 
+                            stagger: 0.08, 
                             ease: "sine.inOut"
                         }, 
-                        "-=1.5"
+                        "-=1.0"
                     ).fromTo(
                         cardsContainerElement, 
                         {
@@ -144,17 +144,17 @@ const Services = forwardRef<HTMLDivElement, ServicesProps>((_props, ref) => {
                             autoAlpha: 1, 
                             x: 0, 
                             scale: 1, 
-                            duration: 0.6, 
-                            ease: "elastic.out(1, 0.4)", 
-                            stagger: 0.15, 
+                            duration: 0.4, 
+                            ease: "power2.out", 
+                            stagger: 0.1, 
                         }, 
-                        "-=0.4"
+                        "-=0.3"
                     );
                 },
                 once: true,
             });
    
-    }, [ref]); 
+    }, [ref]);
 
     return (
         <div ref={ ref } className="min-h-screen pt-20">

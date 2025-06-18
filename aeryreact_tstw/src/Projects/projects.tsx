@@ -144,7 +144,7 @@ const Projects = forwardRef<HTMLDivElement, ProjectsProps>((_props, ref) => {
                             }}
                             className="w-full sm:w-1/2 lg:w-1/3 bg-white/10 border border-white/20 rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-purple-400/30"
                         >
-                            <div className="relative h-56  overflow-hidden flex items-center justify-center content-center bg-black/20"> {/* Increased height, added bg for placeholder */}
+                            <div className="relative h-56  overflow-hidden flex items-center justify-center content-center bg-black/20">
                                 <img
                                     src={project.image}
                                     alt={project.title}

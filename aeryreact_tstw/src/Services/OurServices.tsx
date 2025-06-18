@@ -28,26 +28,15 @@ const OurServicesHeaderSVG = forwardRef<SVGSVGElement>((_props, ref) => (
         <stop offset="50%" style={{ stopColor: '#FF00FF', stopOpacity: 1 }} />
         <stop offset="100%" style={{ stopColor: '#8A2BE2', stopOpacity: 1 }} />
       </linearGradient>
-      <filter id="textGlow" width="300%" height="300%">
-        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-        <feOffset dx="1" dy="1" result="offsetBlur"/>
+      <filter id="textGlow" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
         <feMerge>
-          <feMergeNode in="offsetBlur"/>
-          <feMergeNode in="coloredBlur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-      <filter id="imgGlow" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
-        <feOffset dx="1" dy="0.1" result="offsetBlur"/>
-        <feMerge>
-          <feMergeNode in="offsetBlur"/>
           <feMergeNode in="coloredBlur"/>
           <feMergeNode in="SourceGraphic"/>
         </feMerge>
       </filter>
     </defs>
-    <g id="decorative-elements" filter="url(#imgGlow)">
+    <g id="decorative-elements">
       <image className="birb" width="45" height="45" x="-600" y="50" href={birb1} style={{ opacity: 0.4}} transform="scale(-1, 1)"/>
       <image className="birb" width="80" height="80" x="-680" y="130" href={birb2} style={{ opacity: 0.6 }}  transform="scale(-1, 1)"/>
       <image className="birb" width="80" height="80" x="20" y="130" href={birb1} style={{ opacity: 0.4 }}/>
@@ -96,7 +85,6 @@ const OurServicesHeaderSVG = forwardRef<SVGSVGElement>((_props, ref) => (
       strokeWidth="6"
       strokeLinecap="round"
       fill="none"
-
     />
   </svg>
 ));

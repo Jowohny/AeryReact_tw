@@ -21,8 +21,8 @@ const InfoSVG = React.forwardRef<SVGTextPathElement, InfoSVGProps>(({ svgTextSpa
         <stop offset="60%" stopColor="#d946ef" />
         <stop offset="100%" stopColor="#f472b6" />
       </linearGradient>
-      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+      <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
         <feMerge>
           <feMergeNode in="coloredBlur" />
           <feMergeNode in="SourceGraphic" />
@@ -35,7 +35,7 @@ const InfoSVG = React.forwardRef<SVGTextPathElement, InfoSVGProps>(({ svgTextSpa
       />
     </defs>
     <text
-      fontSize="3.7rem"
+      fontSize="4.5rem"
       fontFamily="'Montserrat', sans-serif"
       fontWeight="bold"
       letterSpacing="2"

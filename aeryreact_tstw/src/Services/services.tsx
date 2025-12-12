@@ -157,7 +157,7 @@ const Services = forwardRef<HTMLDivElement, ServicesProps>((_props, ref) => {
     }, [ref]);
 
     return (
-        <div ref={ ref } className="min-h-screen pt-20">
+        <div ref={ ref } className="py-20">
             <OurServicesHeaderSVG ref={svgHeaderRef} />
             <div ref={serviceCardsContainerRef} className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

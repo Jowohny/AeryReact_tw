@@ -21,7 +21,7 @@ function App() {
   const teamRef = useRef<HTMLDivElement | null>(null);
   const servicesRef = useRef<HTMLDivElement | null>(null);
   const projectsRef = useRef<HTMLDivElement | null>(null);
-  const contactRef = useRef<HTMLDivElement | null>(null);
+  const contactRef = useRef<HTMLFormElement | null>(null);
 
 
   return (

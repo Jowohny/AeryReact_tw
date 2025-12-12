@@ -132,7 +132,7 @@ const Projects = forwardRef<HTMLDivElement, ProjectsProps>((_props, ref) => {
     }, []);
 
     return (
-        <div ref={ref} className="min-h-screen pt-20"> 
+        <div ref={ref} className="pb-40"> 
             <CurrentProjectsHeaderSVG ref={svgHeaderRef} />
             <div ref={projectCardsContainerRef} className="container mx-auto px-4"> 
                 <div className="flex flex-wrap justify-center gap-8"> 

@@ -7,7 +7,7 @@ function Navbar({ teamRef, servicesRef, projectsRef, contactRef }: {
     teamRef: RefObject<HTMLDivElement | null>;
     servicesRef: RefObject<HTMLDivElement | null>;
     projectsRef: RefObject<HTMLDivElement | null>;
-    contactRef: RefObject<HTMLDivElement | null>;
+    contactRef: RefObject<HTMLFormElement | null>;
 }) {
     const navRef = useRef<HTMLDivElement>(null);
     const linksRef = useRef<HTMLDivElement>(null);
